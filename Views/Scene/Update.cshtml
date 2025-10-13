@@ -20,5 +20,5 @@
     @foreach(var choice in Model.ChoiceList) {
         <a class="btn btn-dark" asp-controller="Choice" asp-action="Update" asp-route-id="@choice.ChoiceId">@choice.Text</a>
     }<br /><br />
-    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create">Add another Choice</a></p>
+    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-SceneId="@Model.SceneId">Add another Choice</a></p>
 </form>

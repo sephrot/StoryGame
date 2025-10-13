@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StoryGame.DAL;
 using StoryGame.Models;
+using StoryGame.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-DBInit.Seed(app);
+DBInit.Seed((IApplicationBuilder)app);
 
 app.UseHttpsRedirection();
 app.UseRouting();

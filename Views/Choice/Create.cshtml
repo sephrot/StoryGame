@@ -1,13 +1,20 @@
-@model Choice
+@model ChoiceViewModel
 <h1>Create a choice</h1>
-<form asp-action="CreateScene" asp-controller="Scene" method="post">
-<input type="hidden" asp-for="ChoiceId"/>
+<form asp-action="Create" asp-controller="Choice" method="post">
+<input type="hidden" asp-for="Choice.ThisSceneId" />
+
 
     <div class="form-group">
-        <label asp-for="Text"></label><span class="text-danger">*</span>
-        <input asp-for="Text" class ="form-control"/>
-        <span asp-validation-for="Text" class="text-danger"></span>
+        <label asp-for="Choice.Text"></label><span class="text-danger">*</span>
+        <input asp-for="Choice.Text" class ="form-control"/>
+        <span asp-validation-for="Choice.Text" class="text-danger"></span>
     </div>
-    
+    <div class="form-group">
+        <label asp-for="Choice.NextSceneId"></label><span class="text-danger">*</span>
+        <select asp-for="Choice.NextSceneId" asp-items="Model.SceneSelectList" class="form-control">
+        <option value="">Select Next Scene</option>
+        </select>
+        <span asp-validation-for="Choice.NextSceneId" class="text-danger"></span>
+    </div>
     <button type="submit" class="btn btn-success">Create</button>
 </form>

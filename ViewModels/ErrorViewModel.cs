@@ -1,4 +1,4 @@
-namespace StoryGame.Models;
+namespace StoryGame.ViewModels;
 
 public class ErrorViewModel
 {

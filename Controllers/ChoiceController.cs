@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StoryGame.DAL;
 using StoryGame.Models;
+using StoryGame.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace StoryGame.Controllers;
 
@@ -17,25 +19,48 @@ public class ChoiceController : Controller
     }
 
     [HttpGet]
-    public IActionResult Create(int SceneId)
+    public async Task<IActionResult> Create(int SceneId)
     {
-        var choice = new Choice { ThisSceneId = SceneId };
-        return View(choice);
+        var currentScene = await _storyDbContext.Scenes.FirstOrDefaultAsync(s =>
+            s.SceneId == SceneId
+        );
+            if (currentScene == null)
+    {
+        Console.WriteLine("Scene not found: " + SceneId);
+        return NotFound();
+    }
+        var scenes = await _storyDbContext
+            .Scenes.Where(s => s.StoryId == currentScene.StoryId)
+            .ToListAsync();
+
+        var choiceViewModel = new ChoiceViewModel
+        {
+            Choice = new Choice { ThisSceneId = currentScene.SceneId },
+            SceneSelectList = scenes
+                .Select(scene => new SelectListItem
+                {
+                    Value = scene.SceneId.ToString(),
+                    Text = scene.SceneId.ToString() + ": " + scene.Text,
+                })
+                .ToList(),
+        };
+
+        return View(choiceViewModel);
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(Choice choice)
     {
         var scene = await _storyDbContext.Scenes.FindAsync(choice.ThisSceneId);
-
+        
         if (scene == null)
         {
-            return NotFound("Scene Not found");
+            return NotFound($"Scene Not found IS HERE: {scene}");
         }
         if (!ModelState.IsValid)
         {
-            Console.WriteLine("Didnt work for choice");
-            return BadRequest();
+            Console.WriteLine("ModelState Invalid");
+
         }
         if (scene.ChoiceList == null)
         {
@@ -49,7 +74,7 @@ public class ChoiceController : Controller
         scene.ChoiceList.Add(choice);
         await _storyDbContext.SaveChangesAsync();
         Console.WriteLine("Worked for Choice!");
-        return RedirectToAction("TableStory", "Story");
+        return RedirectToAction("TableStory", "Story", new { id = scene.SceneId });
     }
 
     [HttpGet]
@@ -62,6 +87,7 @@ public class ChoiceController : Controller
         }
         return View(choice);
     }
+
     [HttpPost]
     public async Task<IActionResult> Update(Choice choice)
     {
@@ -80,6 +106,7 @@ public class ChoiceController : Controller
 
         return RedirectToAction("TableStory", "Story");
     }
+
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         return NotFound();
