@@ -1,0 +1,16 @@
+@model IEnumerable<Story>
+<div class="container">
+<h1>Pick a story</h1>
+
+@foreach (var story in Model)
+{
+    <a href="/Story/Story/@story.StoryId" class="btn btn-outline-primary">@story.Text</a>
+}
+
+
+</div>
+
+<div class="container">
+<p><a class="btn btn-success" href="/">Back to Home</a> </p>   
+
+</div>

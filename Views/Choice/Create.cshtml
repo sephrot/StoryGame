@@ -1,0 +1,13 @@
+@model Choice
+<h1>Create a choice</h1>
+<form asp-action="CreateScene" asp-controller="Scene" method="post">
+<input type="hidden" asp-for="ChoiceId"/>
+
+    <div class="form-group">
+        <label asp-for="Text"></label><span class="text-danger">*</span>
+        <input asp-for="Text" class ="form-control"/>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

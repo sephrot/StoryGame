@@ -1,0 +1,17 @@
+@model Scene
+<h1>Create a Scene</h1>
+<form asp-action="CreateScene" asp-controller="Scene" method="post">
+<input type="hidden" asp-for="StoryId"/>
+
+    <div class="form-group">
+        <label asp-for="Text"></label><span class="text-danger">*</span>
+        <input asp-for="Text" class ="form-control"/>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsFinalScene"></label><span class="text-danger">*</span>
+        <input type="radio" asp-for="IsFinalScene" class ="form-control"/>
+        <span asp-validation-for="IsFinalScene" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

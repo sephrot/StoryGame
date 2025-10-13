@@ -1,0 +1,17 @@
+@model Story
+<div class="container">
+
+        <h1>All Scenes for <strong>@Model.Text</strong></h1>
+        <div class="button-row d-flex flex-wrap justify-content-center gap-2">
+    
+    @foreach (var scene in Model.ScenesList) {
+        <td><a href="/Scene/Update/@scene.SceneId" class="btn btn-primary">@scene.Text</a></td>
+    }
+
+        </div>
+        
+    <a asp-action="CreateScene" asp-controller="Scene" asp-route-storyId="@Model.StoryId" class="btn btn-dark mt-3">
+    Create new Scene
+    </a>
+
+</div>

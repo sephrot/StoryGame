@@ -1,0 +1,16 @@
+@model Choice
+
+<h1 class="display-4">Update Choice</h1>
+<form asp-action="Update" asp-controller="Choice" method="post">
+<input type="hidden" asp-for="ChoiceId"/>
+
+    <div class="form-group">
+        <label asp-for="Text"></label><span class="text-danger">*</span>
+        <input asp-for="Text" class ="form-control"/>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    
+    <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
+
+    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create">Add another Choice</a></p>
+</form>
