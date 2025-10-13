@@ -1,56 +1,108 @@
-html,
-body {
-  font-size: 14px;
-  height: 100%;
+/* Make the page fill the entire screen */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* no scrollbars */
+    font-family: 'Press Start 2P', monospace; /* retro look */
+    background-color: black;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Title screen container with dynamic viewport height */
+.title-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+
+    /* Background image */
+    background-image: url("/img/create.png");
+    background-size: cover;          /* fill the screen */
+    background-repeat: no-repeat;
+    /* Lock focus so cropping looks consistent across screens */
+    background-position: 55% 85%;    /* adjust if you want more or less road */
+    image-rendering: pixelated;
+    background-attachment: scroll;
 }
 
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+
+
+
+/* Hide the old <img> so it doesn't interfere */
+.title-screen .background {
+    display: none;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+
+/* Menu section with game title and buttons */
+.title-screen .menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 0 black;
 }
 
-body {
-  margin-bottom: 60px;
-  margin: auto;
-  display: flex;
-  justify-content: center; /* for horizontal */
-  align-items: center; /* for vertical */
+
+/* Game title styling */
+.menu .game-title {
+    font-size: 48px;
+    margin-top: -300px;
 }
 
-.form-floating > .form-control-plaintext::placeholder,
-.form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* The two-button row that sits over the background */
+.choices {
+    position: absolute;                 /* float this on top of the image */
+    top: 55%;                           /* vertical position (tweak 52–60% to align with the knight) */
+    left: 50%;
+    transform: translate(-50%, -50%);   /* center the container itself */
+    width: min(1100px, 88vw);           /* responsive max width */
+    display: flex;                      /* lay out children in a row */
+    justify-content: space-between;     /* push one to the left, one to the right */
+    align-items: center;
+    gap: clamp(16px, 4vw, 56px);        /* spacing on small/large screens */
+    pointer-events: none;               /* so only buttons receive clicks */
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder,
-.form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* The buttons themselves */
+.choice-btn {
+    pointer-events: auto;               /* re-enable clicks on the anchors */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: clamp(16px, 2.2vw, 22px);
+    letter-spacing: 0.5px;
+
+    /* pixel-art friendly panel */
+    background: rgba(0,0,0,0.35);       /* translucent so art shows through */
+    border: 2px solid rgba(255,255,255,0.7);
+    padding: 14px 18px;
+    text-shadow: 2px 2px 0 #000;        /* retro readability */
+    image-rendering: pixelated;
+
+    /* tiny motion */
+    transition: transform 80ms ease, color 120ms ease, border-color 120ms ease;
 }
 
-body,
-html {
-  height: 100%;
+.choice-btn:hover {
+    transform: translateY(-2px);
+    color: #ffe16b;
+    border-color: #ffe16b;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center; /* horizontal center */
-  height: 100%;
-  text-align: center;
+
+/* Stack vertically on phones */
+@media (max-width: 780px) {
+    .choices {
+        top: 68%;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .choice-btn {
+        width: 90%;
+        text-align: center;
+    }
 }
+

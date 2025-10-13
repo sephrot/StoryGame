@@ -1,0 +1,79 @@
+/* Make the page fill the entire screen */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* no scrollbars */
+    font-family: 'Press Start 2P', monospace; /* retro look */
+    background-color: black;
+}
+
+/* Title screen container with dynamic viewport height */
+.title-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+
+    /* Background image */
+    background-image: url("/img/start1.png");
+    background-size: cover;          /* fill the screen */
+    background-repeat: no-repeat;
+    /* Lock focus so cropping looks consistent across screens */
+    background-position: 55% 85%;    /* adjust if you want more or less road */
+    image-rendering: pixelated;
+    background-attachment: scroll;
+}
+
+
+
+
+/* Hide the old <img> so it doesn't interfere */
+.title-screen .background {
+    display: none;
+}
+
+
+
+/* Menu section with game title and buttons */
+.title-screen .menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 0 black;
+}
+
+
+/* Game title styling */
+.menu .game-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+/* Menu buttons */
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 15px 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.menu ul li a:hover {
+    color: yellow;
+    transform: scale(1.1);
+}
+
+

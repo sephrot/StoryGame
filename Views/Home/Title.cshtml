@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Title Screen";
+    Layout = null; // no shared layout, we want a full-screen start view
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - StoryGame</title>
+    <link rel="stylesheet" href="~/css/title.css" />
+    <script src="~/js/title.js"></script>
+</head>
+<body>
+    <div class="title-screen">
+        <img src="~wwwroot/img/start1.png" alt="Background" class="background" />
+        <div class="menu">
+            <h1 class="game-title">RimWorld</h1>
+            <ul>
+                 <li><a asp-controller="Home" asp-action="Index">Play</a></li>
+                <li><a href="#">Credits</a></li>
+                <li><a href="#">Exit</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

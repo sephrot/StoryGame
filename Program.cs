@@ -36,5 +36,8 @@ app.UseAuthorization();
 
 app.UseStaticFiles();
 
-app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Title}/{id?}");
+
 app.Run();
