@@ -3,6 +3,8 @@
 <h1 class="display-4">Update Choice</h1>
 <form asp-action="Update" asp-controller="Choice" method="post">
 <input type="hidden" asp-for="ChoiceId"/>
+<input type="hidden" asp-for="ThisSceneId" />
+<input type="hidden" asp-for="NextSceneId" />
 
     <div class="form-group">
         <label asp-for="Text"></label><span class="text-danger">*</span>
@@ -12,5 +14,5 @@
     
     <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
 
-    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create">Add another Choice</a></p>
+    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Delete" asp-route-id="@Model.ChoiceId">Delete Choice</a></p>
 </form>

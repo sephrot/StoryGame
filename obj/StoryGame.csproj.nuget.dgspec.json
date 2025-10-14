@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haide\\Documents\\StoryGameTryAgain\\StoryGame\\StoryGame.csproj": {}
+    "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haide\\Documents\\StoryGameTryAgain\\StoryGame\\StoryGame.csproj": {
+    "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haide\\Documents\\StoryGameTryAgain\\StoryGame\\StoryGame.csproj",
+        "projectUniqueName": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj",
         "projectName": "StoryGame",
-        "projectPath": "C:\\Users\\Haide\\Documents\\StoryGameTryAgain\\StoryGame\\StoryGame.csproj",
-        "packagesPath": "C:\\Users\\Haide\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haide\\Documents\\StoryGameTryAgain\\StoryGame\\obj\\",
+        "projectPath": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj",
+        "packagesPath": "C:\\Users\\Alias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Haide\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alias\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

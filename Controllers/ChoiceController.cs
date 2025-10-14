@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StoryGame.DAL;
 using StoryGame.Models;
 using StoryGame.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace StoryGame.Controllers;
 
@@ -24,11 +24,11 @@ public class ChoiceController : Controller
         var currentScene = await _storyDbContext.Scenes.FirstOrDefaultAsync(s =>
             s.SceneId == SceneId
         );
-            if (currentScene == null)
-    {
-        Console.WriteLine("Scene not found: " + SceneId);
-        return NotFound();
-    }
+        if (currentScene == null)
+        {
+            Console.WriteLine("Scene not found: " + SceneId);
+            return NotFound();
+        }
         var scenes = await _storyDbContext
             .Scenes.Where(s => s.StoryId == currentScene.StoryId)
             .ToListAsync();
@@ -40,7 +40,7 @@ public class ChoiceController : Controller
                 .Select(scene => new SelectListItem
                 {
                     Value = scene.SceneId.ToString(),
-                    Text = scene.SceneId.ToString() + ": " + scene.Text,
+                    Text = scene.Text,
                 })
                 .ToList(),
         };
@@ -52,7 +52,7 @@ public class ChoiceController : Controller
     public async Task<IActionResult> Create(Choice choice)
     {
         var scene = await _storyDbContext.Scenes.FindAsync(choice.ThisSceneId);
-        
+
         if (scene == null)
         {
             return NotFound($"Scene Not found IS HERE: {scene}");
@@ -60,7 +60,6 @@ public class ChoiceController : Controller
         if (!ModelState.IsValid)
         {
             Console.WriteLine("ModelState Invalid");
-
         }
         if (scene.ChoiceList == null)
         {
@@ -93,22 +92,49 @@ public class ChoiceController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest();
+            return BadRequest(
+                $"Model State was not Valid: ChoiceID: {choice.ChoiceId} NextSceneId: {choice.NextSceneId} ThisSceneId: {choice.ThisSceneId} Text: {choice.Text}"
+            );
         }
 
         var existingChoice = await _storyDbContext.Choices.FindAsync(choice.ChoiceId);
+
         if (existingChoice == null)
         {
             return NotFound("Choice Not found");
         }
         existingChoice.Text = choice.Text;
+        existingChoice.ThisSceneId = choice.ThisSceneId;
+        existingChoice.NextSceneId = choice.NextSceneId;
         await _storyDbContext.SaveChangesAsync();
 
         return RedirectToAction("TableStory", "Story");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var choice = await _storyDbContext
+            .Choices.Include(s => s.ThisScene)
+            .Include(n => n.NextScene)
+            .FirstOrDefaultAsync(c => c.ChoiceId == id);
+        if (choice == null)
+        {
+            return NotFound();
+        }
+        return View(choice);
+    }
+
+    [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        return NotFound();
+        var choice = await _storyDbContext.Choices.FindAsync(id);
+        if (choice == null)
+        {
+            return NotFound();
+        }
+        _storyDbContext.Choices.Remove(choice);
+        await _storyDbContext.SaveChangesAsync();
+        return RedirectToAction("TableStory", "Story");
     }
 }
