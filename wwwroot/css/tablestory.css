@@ -1,0 +1,130 @@
+/* StoryGame – Pixel Minimal Theme (TableStory-ready) */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap');
+
+/* Tokens */
+:root{
+  --bg-0:#07060e; --bg-1:#101426; --bg-2:#1a2142;
+  --ink:#f2efe9; --ink-soft:#d5d1c8;
+  --accent:#ffd14c; --accent-2:#7bd8ff;
+  --px:4px;
+  --title-font:'Press Start 2P', monospace;
+  --ui-font:'VT323', monospace;
+  --text-font:'Nunito Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --vh:1vh;
+}
+@supports (height: 100svh){ :root{ --vh:1svh; } }
+
+/* Base */
+*{ box-sizing:border-box; }
+html,body{
+  margin:0; padding:0; min-height:100%;
+  color:var(--ink); font-family:var(--text-font);
+}
+/* Background image + gradient overlay (for all pages incl. TableStory) */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  background:
+    url("/img/tablestory.png") center/cover no-repeat,
+    linear-gradient(180deg,var(--bg-0),var(--bg-1) 40%,var(--bg-2));
+  image-rendering:pixelated;
+}
+img{ max-width:100%; height:auto; image-rendering:pixelated; }
+a{ color:var(--accent-2); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+/* Titles */
+h1,.title{
+  font-family:var(--title-font);
+  font-size:clamp(28px,6vw,48px);
+  line-height:1.2; text-align:center; color:var(--ink);
+  text-shadow:
+    0 var(--px) 0 #000, var(--px) 0 0 #000,
+    calc(-1*var(--px)) 0 0 #000, 0 calc(-1*var(--px)) 0 #000,
+    0 0 16px rgba(255,209,76,.25);
+  margin:0 0 20px 0;
+}
+.subtitle{
+  font-family:var(--ui-font);
+  font-size:clamp(16px,2.6vw,24px);
+  color:var(--ink-soft);
+  text-shadow:0 2px 0 #000;
+}
+
+/* ===== TableStory page layout ===== */
+.story-list{
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 16px;
+  display:grid;
+  gap:20px;
+}
+.story-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap:16px;
+}
+/* extra space before the second row (Back to Home / Create) */
+.story-grid + .story-grid{ margin-top:32px; }
+
+@media (max-width:800px){
+  .story-grid{ grid-template-columns:1fr; }
+}
+
+/* Pixel buttons */
+.btn-pixel{
+  --btn-bg:#16203c; --btn-ink:var(--ink); --btn-glow:var(--accent);
+  position:relative; display:grid; place-items:center;
+  min-height:56px; padding:12px 18px; border:none; cursor:pointer; user-select:none;
+  color:var(--btn-ink); background:var(--btn-bg); font-family:var(--ui-font);
+  font-size:clamp(16px,2.6vw,22px); letter-spacing:.5px; image-rendering:pixelated;
+  border-radius:0; text-shadow:0 2px 0 #000;
+  transition:transform .06s ease-out, box-shadow .2s ease;
+  box-shadow:
+    0 0 0 var(--px) #000,
+    0 0 0 calc(2*var(--px)) #3b3960,
+    0 calc(2*var(--px)) 0 0 rgba(0,0,0,.35),
+    0 0 18px rgba(0,0,0,.35) inset;
+  text-align:center;
+}
+.btn-pixel:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 0 var(--px) #000,
+    0 0 0 calc(2*var(--px)) #3b3960,
+    0 calc(3*var(--px)) 0 0 rgba(0,0,0,.55),
+    0 0 20px rgba(255,209,76,.35);
+}
+.btn-pixel:active{ transform:translateY(1px); }
+.btn-pixel:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+.btn-pixel::after{
+  content:""; position:absolute; inset:-6px; border:2px solid transparent; filter:blur(1px); opacity:0;
+  transition:border-color .2s ease, opacity .2s ease;
+}
+.btn-pixel:hover::after{ border-color:var(--btn-glow); opacity:.9; }
+
+.btn-primary{ --btn-bg:#1d2b56; --btn-glow:var(--accent); }
+.btn-secondary{ --btn-bg:#25304a; --btn-glow:var(--accent-2); }
+.btn-ok{ --btn-bg:#1f3e2c; --btn-glow:#52d681; }
+.btn-danger{ --btn-bg:#4b1f27; --btn-glow:#ff6b6b; }
+.btn-wide{ width:100%; }
+
+/* ===== Optional: Full-screen title screen (keep only if you still use it) ===== */
+.title-screen{
+  position:fixed; inset:0; width:100vw; height:calc(var(--vh) * 100);
+  overflow:hidden; display:grid; place-items:center; padding:24px; isolation:isolate;
+}
+.title-screen::before{
+  content:""; position:absolute; inset:0;
+  background:
+    url("/img/night-sky.png") center/cover no-repeat,
+    linear-gradient(180deg,var(--bg-0),var(--bg-1) 40%,var(--bg-2));
+  image-rendering:pixelated; z-index:-1;
+}
+.title-stack{ width:min(1100px,94vw); display:grid; gap:28px; justify-items:center; }
+.menu-row{
+  display:grid; grid-template-columns:1fr 1fr; gap:24px; width:100%; max-width:900px;
+}
+@media (max-width:800px){ .menu-row{ grid-template-columns:1fr; } }

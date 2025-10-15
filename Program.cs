@@ -5,7 +5,7 @@ using StoryGame.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Services
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StoryDbContext>(options =>
@@ -19,25 +19,28 @@ builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 DBInit.Seed((IApplicationBuilder)app);
 
 app.UseHttpsRedirection();
-app.UseRouting();
-
-app.UseAuthorization();
-
 app.UseStaticFiles();
 
+app.UseRouting();
+app.UseAuthorization();
+
+// Enable attribute-routed controllers (REQUIRED for the [Route] attributes above)
+app.MapControllers();
+
+// Keep conventional route for the rest of your app
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Title}/{id?}");
+    pattern: "{controller=Home}/{action=Title}/{id?}"
+);
 
 app.Run();

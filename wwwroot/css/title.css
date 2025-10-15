@@ -1,3 +1,7 @@
+/* Google Fonts (titles + readable body) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap');
+
+
 /* Make the page fill the entire screen */
 html, body {
     margin: 0;
@@ -17,7 +21,7 @@ html, body {
     height: calc(var(--vh, 1vh) * 100);
 
     /* Background image */
-    background-image: url("/img/start1.png");
+    background-image: url("/img/start2.png");
     background-size: cover;          /* fill the screen */
     background-repeat: no-repeat;
     /* Lock focus so cropping looks consistent across screens */
@@ -51,7 +55,7 @@ html, body {
 /* Game title styling */
 .menu .game-title {
     font-size: 48px;
-    margin-bottom: 40px;
+    margin-top: -100px;
 }
 
 /* Menu buttons */

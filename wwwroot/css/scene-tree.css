@@ -1,0 +1,130 @@
+/* Google Fonts (titles + readable body) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap');
+
+
+/* ===== Scene tree layout ===== */
+.scene-tree-card {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.scene-tree {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 1rem 0 2rem;
+}
+
+/* each generation of scenes */
+.scene-tree ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-top: 1rem;
+  margin: 0;
+}
+
+/* container for each node */
+.scene-tree li {
+  text-align: center;
+  position: relative;
+  padding: 1rem .5rem 0 .5rem;
+}
+
+/* connector lines */
+.scene-tree li::before,
+.scene-tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-top: 1px solid #3399ff;
+  width: 50%;
+  height: 1rem;
+}
+.scene-tree li::before {
+  left: 0;
+  border-right: 1px solid #3399ff;
+}
+.scene-tree li::after {
+  right: 0;
+  border-left: 1px solid #3399ff;
+}
+.scene-tree li:only-child::before,
+.scene-tree li:only-child::after {
+  display: none;
+}
+.scene-tree li:first-child::before {
+  border: none;
+}
+.scene-tree li:last-child::after {
+  border: none;
+}
+
+/* vertical line connecting levels */
+.scene-tree ul ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #3399ff;
+  height: 1rem;
+}
+
+/* scene box */
+.scene-node {
+  display: inline-block;
+  min-width: 200px;
+  background: rgba(30,30,30,0.95);
+  border: 2px solid #3399ff;
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  color: #cce6ff;
+  text-decoration: none;
+  font-family: "Press Start 2P", monospace;
+  font-size: .8rem;
+  transition: all .25s ease-in-out;
+  box-shadow: 0 0 8px rgba(51,153,255,.4);
+}
+.scene-node:hover {
+  background: #004080;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(51,153,255,.9);
+  transform: scale(1.05);
+}
+
+/* tiny tag */
+.scene-tag {
+  display: inline-block;
+  margin-top: .3rem;
+  font-size: .65rem;
+  border: 1px solid #3399ff;
+  border-radius: 5px;
+  padding: .1rem .4rem;
+  color: #99ccff;
+  background: rgba(51,153,255,.15);
+}
+
+.scene-tree-card { margin-top: 2rem; }
+.scene-tree { display: flex; justify-content: center; overflow-x: auto; padding: 1rem 0 2rem; }
+
+.scene-tree ul { position: relative; display: flex; justify-content: center; list-style: none; padding-top: 1rem; margin: 0; }
+.scene-tree li { text-align: center; position: relative; padding: 1rem .5rem 0 .5rem; }
+
+.scene-tree li::before, .scene-tree li::after { content: ""; position: absolute; top: 0; border-top: 1px solid #3399ff; width: 50%; height: 1rem; }
+.scene-tree li::before { left: 0; border-right: 1px solid #3399ff; }
+.scene-tree li::after  { right: 0; border-left:  1px solid #3399ff; }
+.scene-tree li:only-child::before, .scene-tree li:only-child::after { display: none; }
+.scene-tree li:first-child::before { border: none; }
+.scene-tree li:last-child::after   { border: none; }
+
+.scene-tree ul ul::before { content: ""; position: absolute; top: 0; left: 50%; border-left: 1px solid #3399ff; height: 1rem; }
+
+.scene-node {
+  display: inline-block; min-width: 200px; background: rgba(30,30,30,.95);
+  border: 2px solid #3399ff; border-radius: 10px; padding: .75rem 1rem;
+  color: #cce6ff; text-decoration: none; font-family: "Press Start 2P", monospace; font-size: .8rem;
+  transition: all .25s ease-in-out; box-shadow: 0 0 8px rgba(51,153,255,.4);
+}
+.scene-node:hover { background: #004080; color: #fff; box-shadow: 0 0 15px rgba(51,153,255,.9); transform: scale(1.05); }
+.scene-tag { display: inline-block; margin-top: .3rem; font-size: .65rem; border: 1px solid #3399ff; border-radius: 5px; padding: .1rem .4rem; color: #99ccff; background: rgba(51,153,255,.15); }

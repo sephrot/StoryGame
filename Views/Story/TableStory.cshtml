@@ -1,15 +1,47 @@
 @model IEnumerable<Story>
-<div class="container">
 
-<h1>All the stories!</h1>
-<div class="button-row d-flex flex-wrap justify-content-center gap-2">
-@foreach (var story in Model)
-{
-    <a href="/Story/Details/@story.StoryId" class="btn btn-outline-primary">@story.Text</a>
+@{
+    ViewData["Title"] = "All the stories!";
+    // If your layout already includes nav/footer, keep it.
+    // Layout = "_Layout";
 }
-</div>
-<a class="btn btn-success mt-3" href="/">Back to Home</a>
-<a class="btn btn-outline-danger mt-3" href="/Story/Create">Create a Story</a>
-</div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
+    <link rel="stylesheet" href="~/css/tablestory.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="story-list">
+        <h1>All the stories!</h1>
+
+        <div class="story-grid">
+            @foreach (var story in Model)
+            {
+                <a class="btn-pixel btn-primary btn-wide"
+                   asp-controller="Story"
+                   asp-action="Details"
+                   asp-route-id="@story.StoryId">
+                    @story.Text
+                </a>
+            }
+        </div>
+
+        <div class="story-grid" style="grid-template-columns:1fr 1fr;">
+            <a class="btn-pixel btn-ok"
+               asp-controller="Home" asp-action="Index">
+                Back to Home
+            </a>
+
+            <a class="btn-pixel btn-secondary"
+               asp-controller="Story" asp-action="Create">
+                Create a Story
+            </a>
+        </div>
+    </div>
+</body>
+</html>

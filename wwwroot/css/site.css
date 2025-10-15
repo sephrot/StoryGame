@@ -1,3 +1,6 @@
+/* Google Fonts (titles + readable body) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap');
+
 /* Make the page fill the entire screen */
 html, body {
     margin: 0;
