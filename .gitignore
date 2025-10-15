@@ -1,8 +1,13 @@
-.DS_Store
-**/bin
-**/obj
-**/node_modules
-**/dist
-**/build
-**/Logs
-**/APILogs
+﻿# .NET build
+bin/
+obj/
+
+# SQLite local DB
+*.db
+*.db-shm
+*.db-wal
+
+# Frontend deps/build
+node_modules/
+dist/
+build/
