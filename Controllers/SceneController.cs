@@ -41,7 +41,7 @@ public class SceneController : Controller
         story.ScenesList.Add(scene);
         await _storyDbContext.SaveChangesAsync();
         Console.WriteLine("Worked");
-        return RedirectToAction("TableStory", "Story");
+        return RedirectToAction("Update", "Scene", new { id = scene.SceneId });
     }
 
     [HttpGet]
@@ -63,18 +63,42 @@ public class SceneController : Controller
         if (!ModelState.IsValid)
             return BadRequest();
 
-        // Make sure the scene exists
         var existingScene = await _storyDbContext.Scenes.FindAsync(scene.SceneId);
         if (existingScene == null)
             return NotFound("Scene not found");
 
-        // Update fields
         existingScene.Text = scene.Text;
         existingScene.IsFinalScene = scene.IsFinalScene;
 
-        // EF Core tracks changes
         await _storyDbContext.SaveChangesAsync();
 
+        return RedirectToAction("TableStory", "Story");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var scene = await _storyDbContext.Scenes.FindAsync(id);
+        if (scene == null)
+        {
+            return NotFound();
+        }
+        return View(scene);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var scene = await _storyDbContext
+            .Scenes.Include(c => c.ChoiceList)
+            .FirstOrDefaultAsync(s => s.SceneId == id);
+        if (scene == null)
+        {
+            return NotFound();
+        }
+        _storyDbContext.Choices.RemoveRange(scene.ChoiceList);
+         _storyDbContext.Scenes.Remove(scene);
+        await _storyDbContext.SaveChangesAsync();
         return RedirectToAction("TableStory", "Story");
     }
 }
