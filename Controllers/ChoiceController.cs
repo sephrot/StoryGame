@@ -19,14 +19,14 @@ public class ChoiceController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Create(int SceneId)
+    public async Task<IActionResult> Create(int sceneId)
     {
         var currentScene = await _storyDbContext.Scenes.FirstOrDefaultAsync(s =>
-            s.SceneId == SceneId
+            s.SceneId == sceneId
         );
         if (currentScene == null)
         {
-            Console.WriteLine("Scene not found: " + SceneId);
+            Console.WriteLine("Scene not found: " + sceneId);
             return NotFound();
         }
         var scenes = await _storyDbContext

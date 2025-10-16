@@ -1,17 +1,27 @@
-@model Scene
+@model SceneViewModel
 <h1>Create a Scene</h1>
 <form asp-action="CreateScene" asp-controller="Scene" method="post">
-<input type="hidden" asp-for="StoryId"/>
+<input type="hidden" asp-for="Scene.StoryId"/>
 
     <div class="form-group">
-        <label asp-for="Text"></label><span class="text-danger">*</span>
-        <input asp-for="Text" class ="form-control"/>
-        <span asp-validation-for="Text" class="text-danger"></span>
+        <label asp-for="Scene.Text"></label><span class="text-danger">*</span>
+        <input asp-for="Scene.Text" class ="form-control"/>
+        <span asp-validation-for="Scene.Text" class="text-danger"></span>
     </div>
+    @if (!Model.HasFirstScene) {
     <div class="form-group">
-        <label asp-for="IsFinalScene"></label><span class="text-danger">*</span>
-        <input type="checkbox" asp-for="IsFinalScene" class ="form-control-input"/>
-        <span asp-validation-for="IsFinalScene" class="text-danger"></span>
+        <label asp-for="Scene.IsFirstScene"></label><span class="text-danger">*</span>
+        <input type="checkbox" asp-for="Scene.IsFirstScene" class ="form-control-input"/>
+        <span asp-validation-for="Scene.IsFirstScene" class="text-danger"></span>
     </div>
+    }
+    @if (!Model.HasThreeFinalScenes) {
+    <div class="form-group">
+        <label asp-for="Scene.IsFinalScene"></label><span class="text-danger">*</span>
+        <input type="checkbox" asp-for="Scene.IsFinalScene" class ="form-control-input"/>
+        <span asp-validation-for="Scene.IsFinalScene" class="text-danger"></span>
+    </div>
+    }
+    
     <button type="submit" class="btn btn-success">Create</button>
 </form>

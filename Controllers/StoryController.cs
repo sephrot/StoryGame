@@ -59,7 +59,7 @@ public class StoryController : Controller
         if (story == null)
             return NotFound();
         return View(story);
-    }
+    } 
 
     public async Task<IActionResult> StoryView()
     {
