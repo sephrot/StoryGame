@@ -30,7 +30,11 @@ public class ChoiceController : Controller
             return NotFound();
         }
         var scenes = await _storyDbContext
-            .Scenes.Where(s => s.StoryId == currentScene.StoryId)
+            .Scenes.Where(s =>
+                s.StoryId == currentScene.StoryId
+                && s.SceneId != currentScene.SceneId
+                && s.IsFirstScene == false
+            )
             .ToListAsync();
 
         var choiceViewModel = new ChoiceViewModel
