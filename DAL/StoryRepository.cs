@@ -44,7 +44,10 @@ public class StoryRepository : IStoryRepository
 
     public async Task<bool> Delete(int id)
     {
-        var story = await _db.Stories.FindAsync(id);
+        var story = await _db
+            .Stories.Include(s => s.ScenesList)
+            .ThenInclude(c => c.ChoiceList)
+            .FirstOrDefaultAsync(s => s.StoryId == id);
         if (story == null)
         {
             return false;

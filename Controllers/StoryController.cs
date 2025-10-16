@@ -102,4 +102,22 @@ public class StoryController : Controller
         Console.WriteLine($"Story: {storyId} nextScene: {nextScene} thisScene: {thisScene}");
         return View(scene);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var story = await _storyRepository.GetStoryById(id);
+        if (story == null)
+        {
+            return NotFound();
+        }
+        return View(story);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _storyRepository.Delete(id);
+        return RedirectToAction("TableStory", "Story");
+    }
 }
