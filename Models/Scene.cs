@@ -9,6 +9,7 @@ namespace StoryGame.Models
         public int StoryId { get; set; }
         public Story? Story { get; set; }
         public bool IsFinalScene { get; set; } = false;
+        public bool IsFirstScene { get; set; } = false;
         public List<Choice> ChoiceList { get; set; } = new();
     }
 }

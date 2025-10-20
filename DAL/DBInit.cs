@@ -28,6 +28,7 @@ namespace StoryGame.DAL
             var forestScene = new Scene
             {
                 Text = "You wake up in a dark forest.",
+                IsFirstScene = true,
                 IsFinalScene = false,
                 Story = story1,
             };
@@ -81,6 +82,7 @@ namespace StoryGame.DAL
             {
                 Text = "You walk down the busy street.",
                 IsFinalScene = false,
+                IsFirstScene = true,
                 Story = story2,
             };
 

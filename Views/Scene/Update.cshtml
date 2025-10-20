@@ -1,24 +1,40 @@
-@model Scene
+@model SceneViewModel
 
 <h1 class="display-4">Update Scene</h1>
 <form asp-action="Update" asp-controller="Scene" method="post">
-<input type="hidden" asp-for="SceneId"/>
+<input type="hidden" asp-for="Scene.SceneId"/>
 
     <div class="form-group">
-        <label asp-for="Text"></label><span class="text-danger">*</span>
-        <input asp-for="Text" class ="form-control"/>
-        <span asp-validation-for="Text" class="text-danger"></span>
+        <label asp-for="Scene.Text"></label><span class="text-danger">*</span>
+        <input asp-for="Scene.Text" class ="form-control"/>
+        <span asp-validation-for="Scene.Text" class="text-danger"></span>
     </div>
+    @if (Model.Scene.IsFinalScene) {
+        <div class="form-group">
+        <label asp-for="Scene.IsFinalScene"></label><span class="text-danger">*</span>
+        <input type="checkbox" asp-for="Scene.IsFinalScene" class ="form-control-input"/>
+        <span asp-validation-for="Scene.IsFinalScene" class="text-danger"></span>
+        </div>
+        <a class="btn btn-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
+    }
+    else {
+        if (Model.HasChoices) 
+        {
+            <h2>All choices:</h2>
+            @foreach(var choice in Model.Scene.ChoiceList) 
+            {
+                <a class="btn btn-dark" asp-controller="Choice" asp-action="Update" asp-route-id="@choice.ChoiceId">@choice.Text</a>
+            }
+        <br /><br />
+        <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add another Choice</a></p>
+        <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
 
-    <div class="form-group">
-        <label asp-for="IsFinalScene"></label><span class="text-danger">*</span>
-        <input type="checkbox" asp-for="IsFinalScene" class ="form-control-input"/>
-        <span asp-validation-for="IsFinalScene" class="text-danger"></span>
-    </div>
-    <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
-    <h2>All choices:</h2>
-    @foreach(var choice in Model.ChoiceList) {
-        <a class="btn btn-dark" asp-controller="Choice" asp-action="Update" asp-route-id="@choice.ChoiceId">@choice.Text</a>
-    }<br /><br />
-    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-SceneId="@Model.SceneId">Add another Choice</a></p>
-</form>
+        } else {
+            <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a></p>
+        }
+
+        } 
+
+    </form>
+    
+    

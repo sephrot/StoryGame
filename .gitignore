@@ -11,3 +11,15 @@ obj/
 node_modules/
 dist/
 build/
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.g.props
+*.g.targets
+.vscode/
+*.user
+*.suo
+*.db

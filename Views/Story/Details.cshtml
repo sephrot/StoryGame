@@ -1,11 +1,4 @@
 @model Story
-
-<section class="scene-tree-card">
-  <h2>Scene map</h2>
-  <div id="scene-tree" data-story-id="@Model.StoryId"></div>
-</section>
-
-
 <div class="container">
 
         <h1>All Scenes for <strong>@Model.Text</strong></h1>
@@ -20,12 +13,7 @@
     <a asp-action="CreateScene" asp-controller="Scene" asp-route-storyId="@Model.StoryId" class="btn btn-dark mt-3">
     Create new Scene
     </a>
-
-
-<link rel="stylesheet" href="~/css/scene-tree.css" asp-append-version="true" />
-<script src="~/js/scene-tree.js" asp-append-version="true"></script>
-
-
-
-
+    <a asp-action="Delete" asp-controller="Story" asp-route-id="@Model.StoryId" class="btn btn-danger mt-5">
+    Delete Story
+    </a>
 </div>
