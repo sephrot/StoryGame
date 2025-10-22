@@ -1,123 +1,136 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using StoryGame.DAL;
 using StoryGame.Models;
 
-namespace StoryGame.Controllers;
-
-public class StoryController : Controller
+namespace StoryGame.Controllers
 {
-    private readonly IStoryRepository _storyRepository;
-
-    public StoryController(IStoryRepository storyRepository)
+    public class StoryController : Controller
     {
-        _storyRepository = storyRepository;
-    }
+        private readonly IStoryRepository _storyRepository;
 
-    public async Task<IActionResult> TableStory()
-    {
-        var stories = await _storyRepository.GetEverything();
-        foreach (var story in stories)
+        public StoryController(IStoryRepository storyRepository)
         {
-            Console.WriteLine("StoryName: " + story.Text);
-            if (story.ScenesList != null)
+            _storyRepository = storyRepository;
+        }
+
+        // ---------------- Table (landing with buttons) ----------------
+        public async Task<IActionResult> TableStory()
+        {
+            var stories = await _storyRepository.GetEverything();
+
+            // Debug logs (optional)
+            foreach (var story in stories)
             {
-                int length = story.ScenesList.Count;
-                Console.WriteLine("Total Scenes: " + length);
+                Console.WriteLine("StoryName: " + story.Text);
+                Console.WriteLine("Total Scenes: " + (story.ScenesList?.Count ?? 0));
             }
-            else
+
+            return View(stories);
+        }
+
+        // ---------------- Create ----------------
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Story story)
+        {
+            if (!ModelState.IsValid)
             {
-                Console.WriteLine("Total Scenes: 0");
+                // Return the same view to show validation errors instead of 404
+                return View(story);
             }
+
+            await _storyRepository.Create(story);
+            Console.WriteLine($"Added: Id:{story.StoryId} {story.Text} to database");
+            return RedirectToAction(nameof(TableStory));
         }
-        return View(stories);
-    }
 
-    [HttpGet]
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(Story story)
-    {
-        if (!ModelState.IsValid)
+        // ---------------- Details (right work area) ----------------
+        public async Task<IActionResult> Details(int id)
         {
-            return NotFound();
+            var story = await _storyRepository.GetStoryById(id);
+            if (story == null)
+                return NotFound();
+
+            // Provide data for the LEFT sidebar and highlight the active story
+            ViewBag.AllStories = await _storyRepository.GetAllStories();
+            ViewBag.CurrentStoryId = id;
+
+            return View(story);
         }
-        await _storyRepository.Create(story);
-        Console.WriteLine("Added: Id:" + story.StoryId + " " + story.Text + " to database");
-        return RedirectToAction("TableStory", "Story");
-    }
 
-    public async Task<IActionResult> Details(int id)
-    {
-        var story = await _storyRepository.GetStoryById(id);
-        if (story == null)
-            return NotFound();
-        return View(story);
-    } 
-
-    public async Task<IActionResult> StoryView()
-    {
-        var stories = await _storyRepository.GetAllStories();
-        return View(stories);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Story(int id)
-    {
-        var story = await _storyRepository.GetStoryById(id);
-        Scene currentScene;
-        if (story == null)
+        // ---------------- Simple list view (optional) ----------------
+        public async Task<IActionResult> StoryView()
         {
-            Console.WriteLine("This Ran");
-            return NotFound();
+            var stories = await _storyRepository.GetAllStories();
+            return View(stories);
         }
-        if (story.ScenesList == null)
+
+        // ---------------- Play/Read story flow (optional) ----------------
+        [HttpGet]
+        public async Task<IActionResult> Story(int id)
         {
-            story.ScenesList = new List<Scene>();
+            var story = await _storyRepository.GetStoryById(id);
+            if (story == null)
+                return NotFound();
+
+            var currentScene = story.ScenesList?.FirstOrDefault();
+            if (currentScene == null)
+            {
+                // No scenes yet—redirect to create scene or show a friendly view
+                TempData["Info"] = "This story has no scenes yet.";
+                return RedirectToAction(nameof(Details), new { id });
+            }
+
+            return View(currentScene);
         }
 
-        currentScene = story.ScenesList.First();
-        Console.WriteLine("This Story Id ran, tried to get");
-        return View(currentScene);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Story(int storyId, int nextScene, int thisScene)
-    {
-        var story = await _storyRepository.GetStoryById(storyId);
-        Console.WriteLine($"Story: {storyId} nextScene: {nextScene} thisScene: {thisScene}");
-        if (story == null)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Story(int storyId, int nextScene, int thisScene)
         {
-            Console.WriteLine("This Ran");
-            return NotFound();
+            var story = await _storyRepository.GetStoryById(storyId);
+            Console.WriteLine($"Story: {storyId} nextScene: {nextScene} thisScene: {thisScene}");
+
+            if (story == null)
+                return NotFound();
+
+            var scene = story.ScenesList?.FirstOrDefault(s => s.SceneId == nextScene);
+            if (scene == null)
+            {
+                TempData["Info"] = "Next scene not found.";
+                return RedirectToAction(nameof(Details), new { id = storyId });
+            }
+
+            return View(scene);
         }
 
-        var scene = story.ScenesList.FirstOrDefault(s => s.SceneId == nextScene);
-        Console.WriteLine($"Story: {storyId} nextScene: {nextScene} thisScene: {thisScene}");
-        return View(scene);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var story = await _storyRepository.GetStoryById(id);
-        if (story == null)
+        // ---------------- Delete ----------------
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return NotFound();
-        }
-        return View(story);
-    }
+            var story = await _storyRepository.GetStoryById(id);
+            if (story == null)
+                return NotFound();
 
-    [HttpPost]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        await _storyRepository.Delete(id);
-        return RedirectToAction("TableStory", "Story");
+            return View(story);
+        }
+
+        // Use ActionName("Delete") so forms that post to asp-action="Delete" work.
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _storyRepository.Delete(id);
+            return RedirectToAction(nameof(TableStory));
+        }
     }
 }

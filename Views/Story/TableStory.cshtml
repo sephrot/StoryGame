@@ -1,9 +1,5 @@
-@model IEnumerable<Story>
-
 @{
     ViewData["Title"] = "All the stories!";
-    // If your layout already includes nav/footer, keep it.
-    // Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -16,30 +12,20 @@
     <link rel="stylesheet" href="~/css/tablestory.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="story-list">
+    <div class="story-menu">
         <h1>All the stories!</h1>
 
-        <div class="story-grid">
-            @foreach (var story in Model)
-            {
-                <a class="btn-pixel btn-primary btn-wide"
-                   asp-controller="Story"
-                   asp-action="Details"
-                   asp-route-id="@story.StoryId">
-                    @story.Text
-                </a>
-            }
-        </div>
-
-        <div class="story-grid" style="grid-template-columns:1fr 1fr;">
-            <a class="btn-pixel btn-ok"
-               asp-controller="Home" asp-action="Index">
-                Back to Home
+        <div class="menu-buttons">
+            <a class="btn-pixel btn-secondary btn-wide"
+               asp-controller="Story"
+               asp-action="Create">
+                Write Your Own Story
             </a>
 
-            <a class="btn-pixel btn-secondary"
-               asp-controller="Story" asp-action="Create">
-                Create a Story
+            <a class="btn-pixel btn-ok btn-wide"
+               asp-controller="Home"
+               asp-action="Index">
+                Back to Home
             </a>
         </div>
     </div>

@@ -1,12 +1,83 @@
-@model Story
-<h1>Create a story</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Story Workspace</title>
+  <link rel="stylesheet" href="/css/create.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stars">
 
-<form asp-action="Create" asp-controller="Story" method="post">
-    <div class="form-group">
-        <label asp-for="Text"></label><span class="text-danger">*</span>
-        <input asp-for="Text" class ="form-control"/>
-        <span asp-validation-for="Text" class="text-danger"></span>
-    </div>
+  <div class="workspace">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Stories navigation">
+      <header class="side-head">
+        <h1 class="app-title">Story Lab</h1>
+        <p class="muted">Pixel writer’s desk</p>
+        <div class="side-actions">
+          <a class="btn btn-accent btn-block" href="/Story/Create">+ Create Story</a>
+          <a class="btn btn-ghost btn-block" href="/Story/TableStory">← Back</a>
+        </div>
+      </header>
 
-    <button type="submit" class="btn btn-success">Create</button>
-</form>
+      <div class="side-section">
+        <h2 class="section-title">My Stories</h2>
+        <nav class="story-list" aria-label="My stories">
+          <!-- Repeat these links from your server data -->
+          <a class="story-item is-active" href="/Story/Details/1">
+            <span class="bullet">◆</span> The Adventure Begins
+          </a>
+          <a class="story-item" href="/Story/Details/2">
+            <span class="bullet">◆</span> A Day in the City
+          </a>
+          <a class="story-item" href="/Story/Details/3">
+            <span class="bullet">◆</span> Frozen Lake Legend
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-section">
+        <h2 class="section-title">All Stories</h2>
+        <nav class="story-list" aria-label="All stories">
+          <a class="story-item" href="/Story/Details/42"><span class="bullet">◇</span> Moonlit Market</a>
+          <a class="story-item" href="/Story/Details/43"><span class="bullet">◇</span> Echoes of Steel</a>
+          <a class="story-item" href="/Story/Details/44"><span class="bullet">◇</span> Whispering Pines</a>
+        </nav>
+      </div>
+
+      <footer class="side-foot">
+        <small class="muted">Hover to preview • Click to open</small>
+      </footer>
+    </aside>
+
+    <!-- Main work area -->
+    <main class="editor" aria-labelledby="editor-title">
+      <div class="editor-surface">
+        <header class="editor-topbar">
+          <h2 id="editor-title" class="editor-title">Story workspace.</h2>
+          <p class="editor-sub">Clean, modern, and pixel-retro.</p>
+          <div class="toolbar">
+            <a class="btn btn-ghost" href="/Story/Create">New</a>
+            <a class="btn btn-ghost" href="/Story">Open</a>
+            <button class="btn btn-ghost" type="button">Duplicate</button>
+            <button class="btn btn-ghost" type="button">Export</button>
+          </div>
+        </header>
+
+        <section class="canvas" role="region" aria-label="Story canvas">
+          <!-- Replace with your partials/forms -->
+          <div class="empty-state">
+            <div class="crt">
+              <h3>No story selected</h3>
+              <p>Select a story on the left or create a new one.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

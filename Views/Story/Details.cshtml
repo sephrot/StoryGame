@@ -1,19 +1,43 @@
 @model Story
-<div class="container">
+@{
+    Layout = "_Workspace";
+    ViewBag.Title = $"All Scenes for {Model?.Text}";
+    ViewBag.CurrentStoryId = Model?.StoryId;
+}
 
-        <h1>All Scenes for <strong>@Model.Text</strong></h1>
-        <div class="button-row d-flex flex-wrap justify-content-center gap-2">
-    
-    @foreach (var scene in Model.ScenesList) {
-        <td><a href="/Scene/Update/@scene.SceneId" class="btn btn-primary">@scene.Text</a></td>
-    }
+<header class="editor-topbar">
+    <h2 class="editor-title">All Scenes for @Model.Text</h2>
+</header>
 
-        </div>
-        
-    <a asp-action="CreateScene" asp-controller="Scene" asp-route-storyId="@Model.StoryId" class="btn btn-dark mt-3">
-    Create new Scene
-    </a>
-    <a asp-action="Delete" asp-controller="Story" asp-route-id="@Model.StoryId" class="btn btn-danger mt-5">
-    Delete Story
-    </a>
-</div>
+<section class="canvas" role="region" aria-label="Scenes">
+    <div class="scenes-stack">
+        @if (Model?.ScenesList != null && Model.ScenesList.Any())
+        {
+            foreach (var sc in Model.ScenesList)
+            {
+                <a class="scene-chip"
+                   asp-controller="Scene"
+                   asp-action="Details"
+                   asp-route-id="@sc.SceneId">
+                    @sc.Text
+                </a>
+            }
+        }
+        else
+        {
+            <div class="empty-state crt">
+                <h3>No scenes yet</h3>
+                <p>Create your first scene to start the adventure.</p>
+            </div>
+        }
+    </div>
+
+    <div class="scene-actions">
+        <a class="btn btn-ghost" asp-controller="Scene" asp-action="CreateScene" asp-route-storyId="@Model.StoryId">
+            Create new Scene
+        </a>
+        <form method="post" asp-controller="Story" asp-action="Delete" asp-route-id="@Model.StoryId" onsubmit="return confirm('Delete this story?');">
+            <button type="submit" class="btn btn-danger">Delete Story</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,11 @@
+@model Tuple<IEnumerable<Story>, int?> 
+
+<nav class="story-list" aria-label="Stories">
+@foreach (var s in Model.Item1)
+{
+    var active = (Model.Item2.HasValue && Model.Item2.Value == s.StoryId) ? " is-active" : "";
+    <a class="story-item@active" asp-controller="Story" asp-action="Details" asp-route-id="@s.StoryId">
+        <span class="bullet">◆</span> @s.Text
+    </a>
+}
+</nav>

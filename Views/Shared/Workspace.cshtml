@@ -1,0 +1,45 @@
+@using StoryGame.Models
+@{
+    Layout = null;
+    var title = ViewBag.Title as string ?? "Story Workspace";
+    var allStories = ViewBag.AllStories as IEnumerable<Story>; // provided by controller
+    var currentId = ViewBag.CurrentStoryId as int?;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title</title>
+
+    <link rel="stylesheet" href="~/css/story-workspace.css" asp-append-version="true" />
+</head>
+<body class="bg-stars">
+    <div class="workspace">
+        <!-- LEFT: Sidebar -->
+        <aside class="sidebar" aria-label="Stories navigation">
+            <header class="side-head">
+                <h1 class="app-title">Story Lab</h1>
+                <p class="muted">Pixel writer’s desk</p>
+                <div class="side-actions">
+                    <a class="btn btn-accent btn-block" asp-controller="Story" asp-action="Create">+ Create Story</a>
+                    <a class="btn btn-ghost btn-block" asp-controller="Story" asp-action="TableStory">← Back</a>
+                </div>
+            </header>
+
+            <div class="side-section">
+                <h2 class="section-title">My Stories</h2>
+                @await Html.PartialAsync("~/Views/Shared/_SidebarStories.cshtml",
+                    new Tuple<IEnumerable<Story>, int?>(allStories ?? Enumerable.Empty<Story>(), currentId))
+            </div>
+        </aside>
+
+        <!-- RIGHT: Content -->
+        <main class="editor">
+            <div class="editor-surface">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+</body>
+</html>
