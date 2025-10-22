@@ -11,31 +11,26 @@ namespace StoryGame.Controllers;
 
 public class ChoiceController : Controller
 {
-    private readonly StoryDbContext _storyDbContext;
+    private readonly ISceneRepository _sceneRepository;
+    private readonly IChoiceRepository _choiceRepository;
 
-    public ChoiceController(StoryDbContext storyDbContext)
+    public ChoiceController(ISceneRepository sceneRepository, IChoiceRepository choiceRepository)
     {
-        _storyDbContext = storyDbContext;
+        _sceneRepository = sceneRepository;
+        _choiceRepository = choiceRepository;
     }
 
     [HttpGet]
     public async Task<IActionResult> Create(int sceneId)
     {
-        var currentScene = await _storyDbContext.Scenes.FirstOrDefaultAsync(s =>
-            s.SceneId == sceneId
-        );
+        var currentScene = await _sceneRepository.GetSceneById(sceneId);
+
         if (currentScene == null)
         {
             Console.WriteLine("Scene not found: " + sceneId);
             return NotFound();
         }
-        var scenes = await _storyDbContext
-            .Scenes.Where(s =>
-                s.StoryId == currentScene.StoryId
-                && s.SceneId != currentScene.SceneId
-                && s.IsFirstScene == false
-            )
-            .ToListAsync();
+        var scenes = await _choiceRepository.GetAvailableScenesForChoice(sceneId);
 
         var choiceViewModel = new ChoiceViewModel
         {
@@ -43,8 +38,8 @@ public class ChoiceController : Controller
             SceneSelectList = scenes
                 .Select(scene => new SelectListItem
                 {
-                    Value = scene.SceneId.ToString(),
-                    Text = scene.Text,
+                    Value = scene?.SceneId.ToString(),
+                    Text = scene?.Text,
                 })
                 .ToList(),
         };
@@ -55,35 +50,24 @@ public class ChoiceController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Choice choice)
     {
-        var scene = await _storyDbContext.Scenes.FindAsync(choice.ThisSceneId);
-
-        if (scene == null)
-        {
-            return NotFound($"Scene Not found IS HERE: {scene}");
-        }
         if (!ModelState.IsValid)
         {
             Console.WriteLine("ModelState Invalid");
         }
-        if (scene.ChoiceList == null)
+
+        var success = await _choiceRepository.Create(choice);
+
+        if (!success)
         {
-            Console.WriteLine("New ChoiceList Created");
-            scene.ChoiceList = new List<Choice>();
+            return NotFound("Choice Not found");
         }
-        if (scene.ChoiceList.Count() > 4)
-        {
-            return BadRequest("Can only have 4 choices");
-        }
-        scene.ChoiceList.Add(choice);
-        await _storyDbContext.SaveChangesAsync();
-        Console.WriteLine("Worked for Choice!");
-        return RedirectToAction("TableStory", "Story", new { id = scene.SceneId });
+        return RedirectToAction("TableStory", "Story", new { id = choice.ThisSceneId });
     }
 
     [HttpGet]
     public async Task<IActionResult> Update(int id)
     {
-        var choice = await _storyDbContext.Choices.FindAsync(id);
+        var choice = await _choiceRepository.GetChoiceById(id);
         if (choice == null)
         {
             return NotFound();
@@ -101,27 +85,14 @@ public class ChoiceController : Controller
             );
         }
 
-        var existingChoice = await _storyDbContext.Choices.FindAsync(choice.ChoiceId);
-
-        if (existingChoice == null)
-        {
-            return NotFound("Choice Not found");
-        }
-        existingChoice.Text = choice.Text;
-        existingChoice.ThisSceneId = choice.ThisSceneId;
-        existingChoice.NextSceneId = choice.NextSceneId;
-        await _storyDbContext.SaveChangesAsync();
-
+        await _choiceRepository.Update(choice);
         return RedirectToAction("TableStory", "Story");
     }
 
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
-        var choice = await _storyDbContext
-            .Choices.Include(s => s.ThisScene)
-            .Include(n => n.NextScene)
-            .FirstOrDefaultAsync(c => c.ChoiceId == id);
+        var choice = await _choiceRepository.GetChoiceById(id);
         if (choice == null)
         {
             return NotFound();
@@ -132,13 +103,12 @@ public class ChoiceController : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var choice = await _storyDbContext.Choices.FindAsync(id);
+        var choice = await _choiceRepository.GetChoiceById(id);
         if (choice == null)
         {
-            return NotFound();
+            return NotFound("Choice Not found");
         }
-        _storyDbContext.Choices.Remove(choice);
-        await _storyDbContext.SaveChangesAsync();
+        await _choiceRepository.Delete(id);
         return RedirectToAction("TableStory", "Story");
     }
 }

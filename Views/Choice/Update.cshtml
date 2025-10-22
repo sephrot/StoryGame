@@ -11,6 +11,11 @@
         <input asp-for="Text" class ="form-control"/>
         <span asp-validation-for="Text" class="text-danger"></span>
     </div>
+    @if (Model.NextScene != null) {
+        <div class="form-group">
+        <p>@Model.NextScene.Text</p>
+        </div>
+    }
     
     <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
 
