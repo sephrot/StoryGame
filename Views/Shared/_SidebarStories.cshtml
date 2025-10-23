@@ -1,0 +1,16 @@
+@using StoryGame.Models
+@model Tuple<IEnumerable<Story>, int?>
+
+<ul class="story-list">
+@foreach (var s in Model.Item1)   @* use "s" (do not shadow the type name) *@
+{
+    var isActive = Model.Item2.HasValue && Model.Item2.Value == s.StoryId;
+    <li class="story-list-item @(isActive ? "active" : "")">
+        <a class="story-link"
+           href="@Url.Action("Create", "Story", new { id = s.StoryId })"
+           title="@s.Title">
+            <span class="dot"></span> @s.Title
+        </a>
+    </li>
+}
+</ul>

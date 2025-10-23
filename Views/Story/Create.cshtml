@@ -1,83 +1,107 @@
+@using StoryGame.Models
+@using StoryGame.Models.ViewModels
+@model WorkspaceViewModel
+
+@{
+  Layout = null;
+  var currentId = Model.Selected?.StoryId;
+}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Story Workspace</title>
-  <link rel="stylesheet" href="/css/create.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body class="bg-stars">
 
+  <link rel="stylesheet" href="~/css/create.css" asp-append-version="true" />
+</head>
+
+<body class="bg-stars">
   <div class="workspace">
-    <!-- Sidebar -->
+    <!-- LEFT: Sidebar -->
     <aside class="sidebar" aria-label="Stories navigation">
       <header class="side-head">
         <h1 class="app-title">Story Lab</h1>
         <p class="muted">Pixel writer’s desk</p>
         <div class="side-actions">
-          <a class="btn btn-accent btn-block" href="/Story/Create">+ Create Story</a>
-          <a class="btn btn-ghost btn-block" href="/Story/TableStory">← Back</a>
+          <!-- Force a clean /Story/Create (no id) -->
+          <a class="btn btn-accent btn-block" asp-controller="Story" asp-action="Create" asp-route-id="">
+            + Create Story
+          </a>
+
+          <a class="btn btn-ghost btn-block" asp-controller="Story" asp-action="TableStory">
+            ← Back
+          </a>
         </div>
+
+
       </header>
 
       <div class="side-section">
         <h2 class="section-title">My Stories</h2>
-        <nav class="story-list" aria-label="My stories">
-          <!-- Repeat these links from your server data -->
-          <a class="story-item is-active" href="/Story/Details/1">
-            <span class="bullet">◆</span> The Adventure Begins
-          </a>
-          <a class="story-item" href="/Story/Details/2">
-            <span class="bullet">◆</span> A Day in the City
-          </a>
-          <a class="story-item" href="/Story/Details/3">
-            <span class="bullet">◆</span> Frozen Lake Legend
-          </a>
-        </nav>
+        @await Html.PartialAsync(
+        "~/Views/Shared/_SidebarStories.cshtml",
+                new Tuple<IEnumerable<Story>, int?>(Model.Stories, currentId)
+                )
       </div>
-
-      <div class="side-section">
-        <h2 class="section-title">All Stories</h2>
-        <nav class="story-list" aria-label="All stories">
-          <a class="story-item" href="/Story/Details/42"><span class="bullet">◇</span> Moonlit Market</a>
-          <a class="story-item" href="/Story/Details/43"><span class="bullet">◇</span> Echoes of Steel</a>
-          <a class="story-item" href="/Story/Details/44"><span class="bullet">◇</span> Whispering Pines</a>
-        </nav>
-      </div>
-
-      <footer class="side-foot">
-        <small class="muted">Hover to preview • Click to open</small>
-      </footer>
     </aside>
 
-    <!-- Main work area -->
-    <main class="editor" aria-labelledby="editor-title">
-      <div class="editor-surface">
-        <header class="editor-topbar">
-          <h2 id="editor-title" class="editor-title">Story workspace.</h2>
-          <p class="editor-sub">Clean, modern, and pixel-retro.</p>
-          <div class="toolbar">
-            <a class="btn btn-ghost" href="/Story/Create">New</a>
-            <a class="btn btn-ghost" href="/Story">Open</a>
-            <button class="btn btn-ghost" type="button">Duplicate</button>
-            <button class="btn btn-ghost" type="button">Export</button>
-          </div>
-        </header>
+    <main class="editor">
 
-        <section class="canvas" role="region" aria-label="Story canvas">
-          <!-- Replace with your partials/forms -->
+      <div id="editor-surface" class="editor-surface" data-story-id="@currentId">
+        <div id="workspace-modal" hidden></div>
+
+        @if (Model.Selected is null)
+        {
           <div class="empty-state">
-            <div class="crt">
-              <h3>No story selected</h3>
-              <p>Select a story on the left or create a new one.</p>
-            </div>
+            <h2>No story selected</h2>
+            <p>Select a story on the left or create a new one.</p>
           </div>
-        </section>
+        }
+        else
+        {
+          <h2>@Model.Selected.Text</h2>
+
+          @* INLINE scene list with Edit buttons *@
+          @if (Model.Selected?.ScenesList != null && Model.Selected.ScenesList.Any())
+          {
+            <div class="scenes-stack">
+              @foreach (var sc in Model.Selected.ScenesList)
+              {
+                <div class="scene-chip" style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                  <span>@sc.Text</span>
+                  <div class="scene-actions">
+                    <button type="button" class="btn btn-accent btn-xs js-edit-scene" data-id="@sc.SceneId">
+                      ✏️ Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs js-delete-scene" data-id="@sc.SceneId">
+                      🗑 Delete
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+          else
+          {
+            <em>No scenes yet.</em>
+          }
+
+        }
       </div>
     </main>
   </div>
 
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.13/dist/jquery.validate.unobtrusive.min.js"></script>
+
+
+  <script src="~/js/workspace.js" asp-append-version="true"></script>
 </body>
+
 </html>

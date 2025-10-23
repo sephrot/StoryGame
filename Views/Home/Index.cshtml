@@ -1,8 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Title Screen";
-    Layout = null; // no shared layout, we want a full-screen start view
+    Layout = null; // full-screen start view
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +11,15 @@
     <script src="~/js/title.js"></script>
 </head>
 <body>
-   <div class="title-screen">
-  <div class="menu">
+  <div class="title-screen">
+    <div class="menu">
       <h1 class="game-title">Select Your Story</h1>
+    </div>
+
+    <nav class="choices">
+      <a class="choice-btn" href="@Url.Action("TableStory","Story")">Create your own story</a>
+      <a class="choice-btn" href="@Url.Action("StoryView","Story")">Continue from existing story</a>
+    </nav>
   </div>
-
-  <!-- New: two choices, left/right -->
-  <nav class="choices">
-      <a class="choice-btn" asp-controller="Story" asp-action="TableStory">Create your own story</a>
-      <a class="choice-btn" asp-controller="Story" asp-action="StoryView">Continue from existing story</a>
-  </nav>
-</div>
-
 </body>
 </html>
