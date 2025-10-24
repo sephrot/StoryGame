@@ -1,9 +1,25 @@
-﻿<div class="container">
-<table cellpadding=250>
-<tr>
-<td><a href="/Story/TableStory" class="btn btn-dark">Story Creation</a></td>
-<td><a href="/Story/StoryView" class="btn btn-primary">Story Viewer</a></td>
-</tr>
-</table>
-</div>
+﻿@{
+    ViewData["Title"] = "Title Screen";
+    Layout = null; 
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - StoryGame</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/title.js"></script>
+</head>
+<body>
+  <div class="title-screen">
+    <div class="menu">
+      <h1 class="game-title">Select Your Story</h1>
+    </div>
 
+    <nav class="choices">
+      <a class="choice-btn" href="@Url.Action("TableStory","Story")">Create your own story</a>
+      <a class="choice-btn1" href="@Url.Action("StoryView","Story")">Continue from existing story</a>
+    </nav>
+  </div>
+</body>
+</html>

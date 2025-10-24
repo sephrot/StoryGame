@@ -1,16 +1,16 @@
 @model IEnumerable<Story>
-<div class="container">
-<h1>Pick a story</h1>
 
-@foreach (var story in Model)
-{
-    <a href="/Story/Story/@story.StoryId" class="btn btn-outline-primary">@story.Text</a>
-}
+<section class="pick-wrap">
+  <h1 class="page-title">Pick a story</h1>
 
+  <ul class="story-chips">
+    @foreach (var story in Model)
+    {
+      <li><a href="/Story/Story/@story.StoryId" class="chip">@story.Text</a></li>
+    }
+  </ul>
 
-</div>
-
-<div class="container">
-<p><a class="btn btn-success" href="/">Back to Home</a> </p>   
-
-</div>
+  <nav class="toolbar">
+    <a class="btn btn-success" href="/">Back to Home</a>
+  </nav>
+</section>

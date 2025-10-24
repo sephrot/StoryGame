@@ -1,15 +1,22 @@
 @model IEnumerable<Story>
-<div class="container">
 
-<h1>All the stories!</h1>
-<div class="button-row d-flex flex-wrap justify-content-center gap-2">
-@foreach (var story in Model)
-{
-    <a href="/Story/Details/@story.StoryId" class="btn btn-outline-primary">@story.Text</a>
-}
-</div>
-<a class="btn btn-success mt-3" href="/">Back to Home</a>
-<a class="btn btn-outline-danger mt-3" href="/Story/Create">Create a Story</a>
-</div>
+<section class="table-wrap">
+  <header class="masthead">
+    <h1 class="page-title">All the stories!</h1>
+    <div class="pixel-divider" aria-hidden="true"></div>
+  </header>
 
+  <nav class="toolbar" aria-label="Actions">
+    <a class="btn btn-success" href="/">Back to Home</a>
+    <a class="btn btn-outline-danger" href="/Story/Create">Create a Story</a>
+  </nav>
 
+  <ul class="story-chips">
+    @foreach (var story in Model)
+    {
+      <li>
+        <a href="/Story/Details/@story.StoryId" class="chip">@story.Text</a>
+      </li>
+    }
+  </ul>
+</section>

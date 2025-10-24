@@ -1,38 +1,61 @@
 @model SceneViewModel
+<link rel="stylesheet" href="~/css/site.css" />
 
-<h1 class="display-4">Update Scene</h1>
-<form asp-action="Update" asp-controller="Scene" method="post">
-<input type="hidden" asp-for="Scene.SceneId"/>
+<section class="update-wrap">
+  <h1 class="page-title">Update Scene</h1>
+
+  <form asp-action="Update" asp-controller="Scene" method="post" class="form-card">
+    <input type="hidden" asp-for="Scene.SceneId"/>
 
     <div class="form-group">
-        <label asp-for="Scene.Text"></label><span class="text-danger">*</span>
-        <input asp-for="Scene.Text" class ="form-control"/>
-        <span asp-validation-for="Scene.Text" class="text-danger"></span>
+      <label asp-for="Scene.Text" class="form-label"></label><span class="req">*</span>
+      <input asp-for="Scene.Text" class="form-control pixel-input"/>
+      <span asp-validation-for="Scene.Text" class="text-danger"></span>
     </div>
-    @if (Model.Scene.IsFinalScene) {
-        <div class="form-group">
-        <label asp-for="Scene.IsFinalScene"></label><span class="text-danger">*</span>
-        <input type="checkbox" asp-for="Scene.IsFinalScene" class ="form-control-input"/>
+
+    @if (Model.Scene.IsFinalScene)
+    {
+      <div class="form-group form-check">
+        <input type="checkbox" asp-for="Scene.IsFinalScene" class="form-check-input" id="finalSceneChk" />
+        <label class="form-check-label" for="finalSceneChk">Final Scene</label>
         <span asp-validation-for="Scene.IsFinalScene" class="text-danger"></span>
-        </div>
+      </div>
+
+      <div class="toolbar">
         <a class="btn btn-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </div>
     }
-    else {
-        if (Model.HasChoices) 
-        {
-            <h2>All choices:</h2>
-            @foreach(var choice in Model.Scene.ChoiceList) 
-            {
-                <a class="btn btn-dark" asp-controller="Choice" asp-action="Update" asp-route-id="@choice.ChoiceId">@choice.Text</a>
-            }
-        <br /><br />
-        <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add another Choice</a></p>
-        <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
+    else
+    {
+      @if (Model.HasChoices)
+      {
+        <h2 class="subhead">All choices:</h2>
+        <ul class="choice-list">
+          @foreach (var choice in Model.Scene.ChoiceList)
+          {
+            <li>
+              <a class="btn btn-dark" asp-controller="Choice" asp-action="Update" asp-route-id="@choice.ChoiceId">
+                @choice.Text
+              </a>
+            </li>
+          }
+        </ul>
 
-        } else {
-            <p><a class="btn btn-success" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a></p>
-        }
-
-        } 
-    </form>
-    <a class="btn btn-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
+        <div class="toolbar">
+          <a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add another Choice</a>
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <a class="btn btn-outline-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
+        </div>
+      }
+      else
+      {
+        <div class="toolbar">
+          <a class="btn btn-success" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a>
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <a class="btn btn-outline-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
+        </div>
+      }
+    }
+  </form>
+</section>

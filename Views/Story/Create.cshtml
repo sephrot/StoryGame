@@ -1,12 +1,16 @@
 @model Story
-<h1>Create a story</h1>
 
-<form asp-action="Create" asp-controller="Story" method="post">
+<section class="create-wrap">
+  <h1 class="page-title">Create a story</h1>
+
+  <form asp-action="Create" asp-controller="Story" method="post" class="form-card">
     <div class="form-group">
-        <label asp-for="Text"></label><span class="text-danger">*</span>
-        <input asp-for="Text" class ="form-control"/>
-        <span asp-validation-for="Text" class="text-danger"></span>
+      <label asp-for="Text" class="form-label"></label>
+      <span class="req">*</span>
+      <input asp-for="Text" class="form-control pixel-input" />
+      <span asp-validation-for="Text" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-success">Create</button>
-</form>
+  </form>
+</section>

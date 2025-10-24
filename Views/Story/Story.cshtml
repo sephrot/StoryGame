@@ -1,22 +1,28 @@
 @model Scene
 
-<div class="story-container">
-    <h1 class="mb-4">@Model.Text</h1>
+<section class="play-wrap">
+  <h1 class="page-title">@Model.Text</h1>
 
-    <div id="scene" class="display-4"></div>
-    <br />
-    @if (Model.IsFinalScene == true) {
-        <a class="btn btn-dark" asp-controller="Home" asp-action="Index">Go Back Home</a>
-    }
-    else {
-        @foreach (var choice in Model.ChoiceList) 
-        {
-        <form asp-controller="Story" asp-action="Story" method="post" style="display:inline;">
-            <input type="hidden" name="storyId" value="@Model.StoryId" />
-            <input type="hidden" name="thiScene" value="@choice.ThisSceneId" />
-            <input type="hidden" name="nextScene" value="@choice.NextSceneId" />
-            <button type="submit" class="btn btn-dark">@choice.Text</button>
+  <div id="scene" class="display-4" aria-hidden="true"></div>
+
+  @if (Model.IsFinalScene == true)
+  {
+    <div class="toolbar">
+      <a class="btn btn-success" asp-controller="Home" asp-action="Index">Go Back Home</a>
+    </div>
+  }
+  else
+  {
+    <div class="choice-row">
+      @foreach (var choice in Model.ChoiceList)
+      {
+        <form asp-controller="Story" asp-action="Story" method="post" class="choice-form">
+          <input type="hidden" name="storyId"  value="@Model.StoryId" />
+          <input type="hidden" name="thiScene" value="@choice.ThisSceneId" />
+          <input type="hidden" name="nextScene" value="@choice.NextSceneId" />
+          <button type="submit" class="btn btn-dark">@choice.Text</button>
         </form>
-        }
-    }
-</div>
+      }
+    </div>
+  }
+</section>
