@@ -16,6 +16,8 @@ builder.Services.AddDbContext<StoryDbContext>(options =>
 });
 
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
+builder.Services.AddScoped<ISceneRepository, SceneRepository>();
+builder.Services.AddScoped<IChoiceRepository, ChoiceRepository>();
 
 var app = builder.Build();
 

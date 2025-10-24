@@ -30,11 +30,9 @@
         <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
 
         } else {
-            <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a></p>
+            <p><a class="btn btn-success" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a></p>
         }
 
         } 
-
     </form>
-    
-    
+    <a class="btn btn-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>

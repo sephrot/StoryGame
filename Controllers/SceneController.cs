@@ -8,11 +8,11 @@ namespace StoryGame.Controllers;
 
 public class SceneController : Controller
 {
-    private readonly StoryDbContext _storyDbContext;
+    private readonly ISceneRepository _sceneRepository;
 
-    public SceneController(StoryDbContext storyDbContext)
+    public SceneController(ISceneRepository sceneRepository)
     {
-        _storyDbContext = storyDbContext;
+        _sceneRepository = sceneRepository;
     }
 
     // 🔑 Detect AJAX/fetch requests from the workspace
@@ -23,16 +23,28 @@ public class SceneController : Controller
     [HttpGet]
     public async Task<IActionResult> CreateScene(int storyId)
     {
+<<<<<<< HEAD
         var story = await _storyDbContext
             .Stories.Include(s => s.ScenesList)
             .FirstOrDefaultAsync(s => s.StoryId == storyId);
 
+=======
+        var story = await _sceneRepository.GetAllScenesByStoryId(storyId);
+>>>>>>> origin/main
         if (story == null)
             return NotFound("Story Not Found");
 
         bool hasFirstScene = story.ScenesList.Any(s => s.IsFirstScene);
         int countFinal = story.ScenesList.Count(s => s.IsFinalScene);
+<<<<<<< HEAD
         bool hasThreeFinalScenes = countFinal >= 3;
+=======
+
+        Console.WriteLine("Has total final: " + countFinal);
+
+        if (countFinal >= 3)
+            hasThreeFinalScenes = true;
+>>>>>>> origin/main
 
         var sceneViewModel = new SceneViewModel
         {
@@ -48,13 +60,17 @@ public class SceneController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateScene(Scene scene)
     {
+<<<<<<< HEAD
         var story = await _storyDbContext.Stories.FindAsync(scene.StoryId);
         if (story == null)
             return NotFound("Story Not found");
 
+=======
+>>>>>>> origin/main
         if (!ModelState.IsValid)
             return BadRequest();
 
+<<<<<<< HEAD
         if (story.ScenesList == null)
             story.ScenesList = new List<Scene>();
 
@@ -64,19 +80,45 @@ public class SceneController : Controller
         // Keep legacy non-AJAX behavior
         if (IsAjax()) return Ok();
         return RedirectToAction("Create", "Story", new { id = scene.StoryId });
+=======
+        var success = await _sceneRepository.Create(scene);
+
+        if (!success)
+        {
+            return NotFound("Scene Not found");
+        }
+
+        if (scene.IsFinalScene)
+        {
+            return RedirectToAction("Details", "Story", new { id = scene.StoryId });
+        }
+
+        return RedirectToAction("Update", "Scene", new { id = scene.SceneId });
+>>>>>>> origin/main
     }
 
     [HttpGet]
     public async Task<IActionResult> Update(int id)
     {
+<<<<<<< HEAD
         var scene = await _storyDbContext
             .Scenes.Include(c => c.ChoiceList)
             .FirstOrDefaultAsync(s => s.SceneId == id);
+=======
+        var scene = await _sceneRepository.GetSceneById(id);
+        bool hasChoices = true;
+>>>>>>> origin/main
 
         if (scene == null)
             return NotFound();
 
+<<<<<<< HEAD
         bool hasChoices = scene.ChoiceList.Count > 0;
+=======
+        if (scene.ChoiceList.Count == 0)
+            hasChoices = false;
+
+>>>>>>> origin/main
         var sceneViewModel = new SceneViewModel { Scene = scene, HasChoices = hasChoices };
 
         // 🔑 For workspace modal: render the same view as a partial
@@ -88,11 +130,14 @@ public class SceneController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Update(Scene scene)
+    public async Task<IActionResult> Update(SceneViewModel model)
     {
+        var newScene = model.Scene;
+
         if (!ModelState.IsValid)
             return BadRequest();
 
+<<<<<<< HEAD
         var existingScene = await _storyDbContext.Scenes.FindAsync(scene.SceneId);
         if (existingScene == null)
             return NotFound("Scene not found");
@@ -107,8 +152,17 @@ public class SceneController : Controller
 
         // Keep your legacy flow for non-AJAX
         if (scene.ChoiceList == null || scene.ChoiceList.Count == 0)
+=======
+        var success = await _sceneRepository.Update(newScene);
+        if (!success)
+>>>>>>> origin/main
         {
-            return RedirectToAction("Create", "Choice", new { sceneId = scene.SceneId });
+            Console.WriteLine($"SceneId posted: {newScene.SceneId}");
+            return NotFound("Scene Not found");
+        }
+        if (newScene.ChoiceList.Count == 0)
+        {
+            return RedirectToAction("Create", "Choice", new { sceneId = newScene.SceneId });
         }
 
         return RedirectToAction("Create", "Story", new { id = existingScene.StoryId });
@@ -117,23 +171,33 @@ public class SceneController : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
+<<<<<<< HEAD
         var scene = await _storyDbContext.Scenes.FindAsync(id);
         if (scene == null)
             return NotFound();
 
         // (Optional) Support partial delete dialog later if needed
+=======
+        var scene = await _sceneRepository.GetSceneById(id);
+
+>>>>>>> origin/main
         return View(scene);
     }
 
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
+<<<<<<< HEAD
         var scene = await _storyDbContext
             .Scenes.Include(c => c.ChoiceList)
             .FirstOrDefaultAsync(s => s.SceneId == id);
 
+=======
+        var scene = await _sceneRepository.GetSceneById(id);
+>>>>>>> origin/main
         if (scene == null)
             return NotFound();
+<<<<<<< HEAD
 
         var storyId = scene.StoryId;
 
@@ -146,5 +210,10 @@ public class SceneController : Controller
 
         
         return RedirectToAction("Create", "Story", new { id = storyId });
+=======
+        }
+        await _sceneRepository.Delete(id);
+        return RedirectToAction("TableStory", "Story");
+>>>>>>> origin/main
     }
 }
