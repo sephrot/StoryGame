@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StoryGame.DAL;
 using StoryGame.Models;
 using StoryGame.ViewModels;
@@ -15,11 +16,6 @@ public class SceneController : Controller
         _sceneRepository = sceneRepository;
     }
 
-    // 🔑 Detect AJAX/fetch requests from the workspace
-    private bool IsAjax() =>
-        Request.Headers.TryGetValue("X-Requested-With", out var v) &&
-        v.ToString().Contains("fetch");
-
     [HttpGet]
     public async Task<IActionResult> CreateScene(int storyId)
     {
@@ -28,6 +24,7 @@ public class SceneController : Controller
             return NotFound("Story Not Found");
 
         bool hasFirstScene = story.ScenesList.Any(s => s.IsFirstScene);
+        bool hasThreeFinalScenes = false;
         int countFinal = story.ScenesList.Count(s => s.IsFinalScene);
 
         Console.WriteLine("Has total final: " + countFinal);
@@ -41,8 +38,6 @@ public class SceneController : Controller
             HasFirstScene = hasFirstScene,
             HasThreeFinalScenes = hasThreeFinalScenes,
         };
-
-        // (Optional) You can make this return a partial in the future if needed
         return View(sceneViewModel);
     }
 
@@ -50,7 +45,10 @@ public class SceneController : Controller
     public async Task<IActionResult> CreateScene(Scene scene)
     {
         if (!ModelState.IsValid)
+        {
+            Console.WriteLine("Didnt work");
             return BadRequest();
+        }
 
         var success = await _sceneRepository.Create(scene);
 
@@ -80,12 +78,6 @@ public class SceneController : Controller
             hasChoices = false;
 
         var sceneViewModel = new SceneViewModel { Scene = scene, HasChoices = hasChoices };
-
-        // 🔑 For workspace modal: render the same view as a partial
-        if (IsAjax())
-            return PartialView("Update", sceneViewModel);
-
-        // Full-page edit still works as before
         return View(sceneViewModel);
     }
 
@@ -107,8 +99,7 @@ public class SceneController : Controller
         {
             return RedirectToAction("Create", "Choice", new { sceneId = newScene.SceneId });
         }
-
-        return RedirectToAction("Create", "Story", new { id = existingScene.StoryId });
+        return RedirectToAction("TableStory", "Story");
     }
 
     [HttpGet]
@@ -124,6 +115,7 @@ public class SceneController : Controller
     {
         var scene = await _sceneRepository.GetSceneById(id);
         if (scene == null)
+        {
             return NotFound();
         }
         await _sceneRepository.Delete(id);

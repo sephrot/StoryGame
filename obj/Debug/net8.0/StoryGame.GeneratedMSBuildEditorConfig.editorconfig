@@ -1,0 +1,111 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = StoryGame
+build_property.RootNamespace = StoryGame
+build_property.ProjectDir = C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali\StoryGame\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali\StoryGame
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Choice/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Choice/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Choice/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Home/Title.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaXRsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Scene/CreateScene.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcQ3JlYXRlU2NlbmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Scene/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Scene/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/SidebarStories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNpZGViYXJTdG9yaWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/Workspace.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFdvcmtzcGFjZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/_SidebarStories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlYmFyU3Rvcmllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/_Workspace.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Xb3Jrc3BhY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Story/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Story/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Story/Story.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcU3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Story/StoryView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcU3RvcnlWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Story/TableStory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcVGFibGVTdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esatc/OneDrive/Masaüstü/webapplikasjoner/ali/StoryGame/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-31w9665jza
