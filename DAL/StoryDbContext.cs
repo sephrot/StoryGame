@@ -17,6 +17,15 @@ public class StoryDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder
+        .Entity<Story>()
+        .HasMany(s => s.ScenesList)
+        .WithOne(sc => sc.Story)
+        .HasForeignKey(sc => sc.StoryId)
+        .OnDelete(DeleteBehavior.Cascade);
+
         // A Scene has many Choices
         modelBuilder
             .Entity<Scene>()
