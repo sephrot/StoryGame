@@ -7,8 +7,7 @@ A simple ASP.NET Core story game engine where users can create interactive stori
 ⚠️ Work in progress. Some functionalities are missing or incomplete.
 
 - Users can CRUD stories, scenes, and choices.
-- Final scenes can be created, but validation is basic.
-- Story playback works for simple linear choices.
+- Final and first scenes can be created, but validation is basic.
 - Missing good story workflow creation
 - Bugs like "Multiple First Scenes", "More than 3 choices" still need fixing
 
