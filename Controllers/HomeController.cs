@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoryGame.DAL;
 using StoryGame.Models;
 using StoryGame.ViewModels;
+
 namespace StoryGame.Controllers;
 
 public class HomeController : Controller

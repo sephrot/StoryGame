@@ -104,9 +104,7 @@ public class StoryController : Controller
             return NotFound("Story Not Found for the StoryId");
         }
         if (story.ScenesList == null)
-        {
             story.ScenesList = new List<Scene>();
-        }
 
         currentScene = story.ScenesList.First();
         return View(currentScene);
@@ -152,7 +150,7 @@ public class StoryController : Controller
         {
             bool returnOk = await _storyRepository.Update(story);
             if (returnOk)
-                return RedirectToAction("TableStory", "Story");
+                return RedirectToAction("Details", "Story", new { id = story.StoryId });
         }
         _logger.LogWarning("[StoryController] Story Update failed {@story}", story);
         return View(story);

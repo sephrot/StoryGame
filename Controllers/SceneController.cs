@@ -50,6 +50,13 @@ public class SceneController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateScene(Scene scene)
     {
+        var story = await _sceneRepository.GetAllScenesByStoryId(scene.StoryId);
+        if (story == null)
+        {
+            _logger.LogError("[SceneController] story not found");
+            return NotFound("Story Not Found");
+
+        }
         if (!ModelState.IsValid)
         {
             _logger.LogWarning("[SceneController] scene creation failed {@scene}", scene);
@@ -57,6 +64,9 @@ public class SceneController : Controller
         }
 
         var success = await _sceneRepository.Create(scene);
+
+        if (scene.ChoiceList.Count == 0 && !scene.IsFinalScene)
+            return RedirectToAction("Create", "Choice", new { sceneId = scene.SceneId });
 
         if (!success)
         {
@@ -88,7 +98,6 @@ public class SceneController : Controller
 
         if (scene.ChoiceList.Count == 0)
             hasChoices = false;
-
         var sceneViewModel = new SceneViewModel { Scene = scene, HasChoices = hasChoices };
         return View(sceneViewModel);
     }

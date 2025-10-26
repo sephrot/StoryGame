@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito+Sans:wght@400;700&display=swap");
 
-/* ------------------ TOKENS ------------------ */
 :root {
   --bg-0: #07060e;
   --bg-1: #101426;
@@ -23,7 +22,6 @@
   }
 }
 
-/* ------------------ BASE ------------------ */
 * {
   box-sizing: border-box;
 }
