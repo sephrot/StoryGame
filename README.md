@@ -9,12 +9,12 @@ A simple ASP.NET Core story game engine where users can create interactive stori
 - Users can CRUD stories, scenes, and choices.
 - Final and first scenes can be created, but validation is basic.
 - Missing good story workflow creation
-- Bugs like "Multiple First Scenes", "More than 3 choices" still need fixing
+- Bugs like "Multiple First Scenes", "More than 3 choices" and choices leading back to same scenes still need fixing
 
 ## Technical Requirements
 
-- .NET Core 8.0 MVC for backend and frontend
-- Node.js v22.16.0
+- .NET Core 8.0 MVC for backend
+- Node.js v22.16.0 (tested)
 
 ### How to Start the Application
 

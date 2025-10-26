@@ -9,89 +9,89 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StoryGame
 build_property.RootNamespace = StoryGame
-build_property.ProjectDir = C:\Users\Haide\Documents\StoryGameTryAgain\StoryGame\
+build_property.ProjectDir = C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Haide\Documents\StoryGameTryAgain\StoryGame
+build_property.MSBuildProjectDirectory = C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Choice/Create.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Choice/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Choice/Delete.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Choice/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Choice/Update.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Choice/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hvaWNlXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Home/Index.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Scene/CreateScene.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Scene/CreateScene.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcQ3JlYXRlU2NlbmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Scene/Delete.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Scene/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Scene/Update.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Scene/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NlbmVcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Shared/Error.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/Create.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/Delete.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/Details.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/Story.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/Story.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcU3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/StoryView.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/StoryView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcU3RvcnlWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/TableStory.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/TableStory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcVGFibGVTdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Story/Update.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Story/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcnlcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/_ViewImports.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/_ViewStart.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Haide/Documents/StoryGameTryAgain/StoryGame/Views/Shared/_Layout.cshtml]
+[C:/Users/Alias/Documents/AAAAAAAAAAAAAAAAAAAA/StoryGame/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-31w9665jza
