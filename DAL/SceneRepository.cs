@@ -71,9 +71,26 @@ public class SceneRepository : ISceneRepository
         {
             return false;
         }
-        _db.Choices.RemoveRange(scene.ChoiceList);
+
+        using var tx = await _db.Database.BeginTransactionAsync();
+        try
+        {
+        var innkommende = await _db.Choices 
+        .Where (c => c.NextSceneId == scene.SceneId)
+        .ToListAsync();
+        foreach (var b in innkommende)
+        b.NextSceneId = null;
+
         _db.Scenes.Remove(scene);
         await _db.SaveChangesAsync();
+
+        await tx.CommitAsync();
         return true;
+        }
+        catch
+        {
+            await tx.RollbackAsync();
+            return false;
+        }
     }
 }

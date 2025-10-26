@@ -107,6 +107,7 @@ public class SceneController : Controller
     {
         var scene = await _sceneRepository.GetSceneById(id);
 
+        if (scene == null) return NotFound();
         return View(scene);
     }
 
