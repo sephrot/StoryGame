@@ -1,6 +1,6 @@
 @model Story
 
-<section class="details-wrap">
+<section class="table-wrap">
   <header class="masthead">
     <h1 class="page-title">All Scenes for <strong>@Model.Text</strong></h1>
   </header>
@@ -15,7 +15,8 @@
   </ul>
 
   <div class="toolbar">
-    <a asp-action="CreateScene" asp-controller="Scene" asp-route-storyId="@Model.StoryId" class="btn btn-dark">Create new Scene</a>
-    <a asp-action="Delete" asp-controller="Story" asp-route-id="@Model.StoryId" class="btn btn-danger">Delete Story</a>
+    <a asp-action="CreateScene" asp-controller="Scene" asp-route-storyId="@Model.StoryId" class="btn btn-success">Create new Scene</a>
+    <a asp-action="Update" asp-controller="Story" asp-route-id="@Model.StoryId" class="btn btn-outline-warning">Update Story</a>
+    <a asp-action="Delete" asp-controller="Story" asp-route-id="@Model.StoryId" class="btn btn-outline-danger">Delete Story</a>
   </div>
 </section>

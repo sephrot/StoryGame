@@ -1,11 +1,10 @@
 @model Scene
 
-<h2>Delete Scene</h2>
+<div class="table-wrap">
+<h1>Delete Scene</h1>
 <p>Are you sure you want to delete this scene?</p>
-<div>
-<h4>Choice</h4>
 <hr />
-    <dl class="row">
+    <dl class="row form-card">
         <dt class="col-sm-2">Scene ID</dt>
         <dd class="col-sm-10">@Model.SceneId</dd>
 
@@ -20,9 +19,10 @@
     
         
     </dl>
-
+    <div class="toolbar">
     <form asp-action="DeleteConfirmed" asp-route-id="@Model.SceneId" method="post">
         <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-action="Update" asp-route-id="@Model.SceneId" class="btn btn-secondary">Cancel</a>
     </form>
+    </div>
 </div>

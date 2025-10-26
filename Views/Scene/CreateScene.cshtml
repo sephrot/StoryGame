@@ -1,11 +1,14 @@
 @model SceneViewModel
+<section class="table-wrap">
+<div class="form-card">
+
 <h1>Create a Scene</h1>
 <form asp-action="CreateScene" asp-controller="Scene" method="post">
 <input type="hidden" asp-for="Scene.StoryId"/>
 
     <div class="form-group">
         <label asp-for="Scene.Text"></label><span class="text-danger">*</span>
-        <input asp-for="Scene.Text" class ="form-control"/>
+        <input asp-for="Scene.Text" class="form-control"/>
         <span asp-validation-for="Scene.Text" class="text-danger"></span>
     </div>
     @if (!Model.HasFirstScene) {
@@ -22,6 +25,10 @@
         <span asp-validation-for="Scene.IsFinalScene" class="text-danger"></span>
     </div>
     }
-    
-    <button type="submit" class="btn btn-success">Create</button>
+    <div class="toolbar">
+        <button type="submit" class="btn btn-success">Create</button>
+        <a asp-controller="Story" asp-action="Details" asp-route-id="@Model.Scene.StoryId" class="btn btn-outline-danger">Cancel</a>
+    </div>
 </form>
+</div>
+</section>

@@ -9,8 +9,10 @@
       "StoryGame/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "8.0.21",
-          "Microsoft.EntityFrameworkCore.Proxies": "8.0.21",
-          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.21"
+          "Microsoft.EntityFrameworkCore.Proxies": "8.0.7",
+          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.21",
+          "Serilog.Extensions.Logging": "8.0.0",
+          "Serilog.Sinks.File": "7.0.0"
         },
         "runtime": {
           "StoryGame.dll": {}
@@ -313,15 +315,15 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Proxies/8.0.21": {
+      "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
         "dependencies": {
           "Castle.Core": "5.1.1",
           "Microsoft.EntityFrameworkCore": "8.0.21"
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll": {
-            "assemblyVersion": "8.0.21.0",
-            "fileVersion": "8.0.2125.47512"
+            "assemblyVersion": "8.0.7.0",
+            "fileVersion": "8.0.724.31404"
           }
         }
       },
@@ -453,6 +455,37 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "Serilog/4.2.0": {
+        "runtime": {
+          "lib/net8.0/Serilog.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "Serilog.Extensions.Logging/8.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "Serilog": "4.2.0"
+        },
+        "runtime": {
+          "lib/net8.0/Serilog.Extensions.Logging.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
+        }
+      },
+      "Serilog.Sinks.File/7.0.0": {
+        "dependencies": {
+          "Serilog": "4.2.0"
+        },
+        "runtime": {
+          "lib/net8.0/Serilog.Sinks.File.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
           }
         }
       },
@@ -781,12 +814,12 @@
       "path": "microsoft.entityframeworkcore.design/8.0.21",
       "hashPath": "microsoft.entityframeworkcore.design.8.0.21.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Proxies/8.0.21": {
+    "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Csc6z/2qGPIiocbWAyQnAJUV0vo/r5uOfru/G/RdQX41z86DkCqNzl7leFcYtG6U3EmUw58kk+Ph97N6A0jtdA==",
-      "path": "microsoft.entityframeworkcore.proxies/8.0.21",
-      "hashPath": "microsoft.entityframeworkcore.proxies.8.0.21.nupkg.sha512"
+      "sha512": "sha512-QXaz3KxardLcEc++7nNy35LGTuLxf/bIMV4+gLV+mbvfXMdC2p5yLuW+S0qcX6hNWqtDo7OHEbZ1Jcf2ezh9ZA==",
+      "path": "microsoft.entityframeworkcore.proxies/8.0.7",
+      "hashPath": "microsoft.entityframeworkcore.proxies.8.0.7.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.21": {
       "type": "package",
@@ -885,6 +918,27 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Serilog/4.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gmoWVOvKgbME8TYR+gwMf7osROiWAURterc6Rt2dQyX7wtjZYpqFiA/pY6ztjGQKKV62GGCyOcmtP1UKMHgSmA==",
+      "path": "serilog/4.2.0",
+      "hashPath": "serilog.4.2.0.nupkg.sha512"
+    },
+    "Serilog.Extensions.Logging/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YEAMWu1UnWgf1c1KP85l1SgXGfiVo0Rz6x08pCiPOIBt2Qe18tcZLvdBUuV5o1QHvrs8FAry9wTIhgBRtjIlEg==",
+      "path": "serilog.extensions.logging/8.0.0",
+      "hashPath": "serilog.extensions.logging.8.0.0.nupkg.sha512"
+    },
+    "Serilog.Sinks.File/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fKL7mXv7qaiNBUC71ssvn/dU0k9t0o45+qm2XgKAlSt19xF+ijjxyA3R6HmCgfKEKwfcfkwWjayuQtRueZFkYw==",
+      "path": "serilog.sinks.file/7.0.0",
+      "hashPath": "serilog.sinks.file.7.0.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.6": {
       "type": "package",

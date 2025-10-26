@@ -1,7 +1,6 @@
 @model SceneViewModel
-<link rel="stylesheet" href="~/css/site.css" />
 
-<section class="update-wrap">
+<section class="table-wrap">
   <h1 class="page-title">Update Scene</h1>
 
   <form asp-action="Update" asp-controller="Scene" method="post" class="form-card">
@@ -31,7 +30,7 @@
       @if (Model.HasChoices)
       {
         <h2 class="subhead">All choices:</h2>
-        <ul class="choice-list">
+        <ul class="scene-list">
           @foreach (var choice in Model.Scene.ChoiceList)
           {
             <li>
@@ -43,16 +42,16 @@
         </ul>
 
         <div class="toolbar">
-          <a class="btn btn-danger" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add another Choice</a>
           <button type="submit" class="btn btn-success">Save Changes</button>
+          <a class="btn btn-outline-warning" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add another Choice</a>
           <a class="btn btn-outline-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
         </div>
       }
       else
       {
         <div class="toolbar">
-          <a class="btn btn-success" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a>
           <button type="submit" class="btn btn-success">Save Changes</button>
+          <a class="btn btn-outline-warning" asp-controller="Choice" asp-action="Create" asp-route-sceneId="@Model.Scene.SceneId">Add a choice</a>
           <a class="btn btn-outline-danger" asp-controller="Scene" asp-action="Delete" asp-route-id="@Model.Scene.SceneId">Delete Scene</a>
         </div>
       }

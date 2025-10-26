@@ -1,20 +1,25 @@
 @model ChoiceViewModel
+<div class="table-wrap">
 <h1>Create a choice</h1>
-<form asp-action="Create" asp-controller="Choice" method="post">
+<form asp-action="Create" asp-controller="Choice" method="post" class="form-card">
 <input type="hidden" asp-for="Choice.ThisSceneId" />
 
 
-    <div class="form-group">
+    <div class="form-group ">
         <label asp-for="Choice.Text"></label><span class="text-danger">*</span>
         <input asp-for="Choice.Text" class ="form-control"/>
         <span asp-validation-for="Choice.Text" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group ">
         <label asp-for="Choice.NextSceneId"></label><span class="text-danger">*</span>
         <select asp-for="Choice.NextSceneId" asp-items="Model.SceneSelectList" class="form-control">
         <option value="">Select Next Scene</option>
         </select>
         <span asp-validation-for="Choice.NextSceneId" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-success">Create</button>
+    <div class="toolbar">
+        <button type="submit" class="btn btn-success ">Create</button>
+        <a asp-controller="Scene" asp-action="Update" asp-route-id="@Model.Choice.ThisSceneId" class="btn btn-outline-danger">Cancel</a>
+    </div>
 </form>
+</div>

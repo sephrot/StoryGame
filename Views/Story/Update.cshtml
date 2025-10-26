@@ -1,0 +1,17 @@
+@model Story
+
+<div class="table-wrap">
+<h1 class="display-4">Update Story</h1>
+<form asp-action="Update" asp-controller="Story" method="post" class="form-card">
+<input type="hidden" asp-for="StoryId"/>
+    <div class="form-group">
+        <label asp-for="Text"></label><span class="text-danger">*</span>
+        <input asp-for="Text" class ="form-control"/>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    <div class="toolbar">
+    <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+    <a class="btn btn-danger" asp-controller="Story" asp-action="Delete" asp-route-id="@Model.StoryId">Delete Story</a>
+    </div>    
+</form>
+</div>

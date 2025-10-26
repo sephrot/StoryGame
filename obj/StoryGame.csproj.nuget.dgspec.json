@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\esatc\\OneDrive\\Masaüstü\\webapplikasjoner\\ali2\\StoryGame\\StoryGame.csproj": {}
+    "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\esatc\\OneDrive\\Masaüstü\\webapplikasjoner\\ali2\\StoryGame\\StoryGame.csproj": {
+    "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\esatc\\OneDrive\\Masaüstü\\webapplikasjoner\\ali2\\StoryGame\\StoryGame.csproj",
+        "projectUniqueName": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj",
         "projectName": "StoryGame",
-        "projectPath": "C:\\Users\\esatc\\OneDrive\\Masaüstü\\webapplikasjoner\\ali2\\StoryGame\\StoryGame.csproj",
-        "packagesPath": "C:\\Users\\esatc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\esatc\\OneDrive\\Masaüstü\\webapplikasjoner\\ali2\\StoryGame\\obj\\",
+        "projectPath": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\StoryGame.csproj",
+        "packagesPath": "C:\\Users\\Alias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alias\\Documents\\AAAAAAAAAAAAAAAAAAAA\\StoryGame\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\esatc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Alias\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -51,11 +58,19 @@
             },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
-              "version": "[8.*, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.*, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -77,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

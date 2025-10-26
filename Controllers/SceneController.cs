@@ -10,10 +10,12 @@ namespace StoryGame.Controllers;
 public class SceneController : Controller
 {
     private readonly ISceneRepository _sceneRepository;
+    private readonly ILogger<SceneController> _logger;
 
-    public SceneController(ISceneRepository sceneRepository)
+    public SceneController(ISceneRepository sceneRepository, ILogger<SceneController> logger)
     {
         _sceneRepository = sceneRepository;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -21,8 +23,12 @@ public class SceneController : Controller
     {
         var story = await _sceneRepository.GetAllScenesByStoryId(storyId);
         if (story == null)
+        {
+            _logger.LogError(
+                "[SceneController] Story and Scene list not found while executing _storyRepository.GetAllScenesByStoryId()"
+            );
             return NotFound("Story Not Found");
-
+        }
         bool hasFirstScene = story.ScenesList.Any(s => s.IsFirstScene);
         bool hasThreeFinalScenes = false;
         int countFinal = story.ScenesList.Count(s => s.IsFinalScene);
@@ -46,8 +52,8 @@ public class SceneController : Controller
     {
         if (!ModelState.IsValid)
         {
-            Console.WriteLine("Didnt work");
-            return BadRequest();
+            _logger.LogWarning("[SceneController] scene creation failed {@scene}", scene);
+            return View(new SceneViewModel { Scene = scene });
         }
 
         var success = await _sceneRepository.Create(scene);
@@ -72,7 +78,13 @@ public class SceneController : Controller
         bool hasChoices = true;
 
         if (scene == null)
-            return NotFound();
+        {
+            _logger.LogError(
+                "[SceneController] Scene not found while executing _sceneRepositoy.GetSceneById for id {SceneId:0000}",
+                id
+            );
+            return NotFound("Scene not found for sceneId");
+        }
 
         if (scene.ChoiceList.Count == 0)
             hasChoices = false;
@@ -87,7 +99,10 @@ public class SceneController : Controller
         var newScene = model.Scene;
 
         if (!ModelState.IsValid)
-            return BadRequest();
+        {
+            _logger.LogWarning("[SceneController] Scene Update failed {@newScene}", newScene);
+            return View(model);
+        }
 
         var success = await _sceneRepository.Update(newScene);
         if (!success)
@@ -106,19 +121,28 @@ public class SceneController : Controller
     public async Task<IActionResult> Delete(int id)
     {
         var scene = await _sceneRepository.GetSceneById(id);
-
+        if (scene == null)
+        {
+            _logger.LogError(
+                "[SceneController] Scene not found for the sceneId {SceneId:0000}",
+                id
+            );
+            return BadRequest("Scene not found for sceneid");
+        }
         return View(scene);
     }
 
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var scene = await _sceneRepository.GetSceneById(id);
-        if (scene == null)
+        bool returnOk = await _sceneRepository.Delete(id);
+        if (!returnOk)
         {
-            return NotFound();
+            _logger.LogError(
+                "[SceneController] Scene deletion failed for the sceneId {SceneId:0000}",
+                id
+            );
         }
-        await _sceneRepository.Delete(id);
         return RedirectToAction("TableStory", "Story");
     }
 }

@@ -406,3 +406,8 @@ C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali2\StoryGame\obj\Debug\net
 C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali2\StoryGame\obj\Debug\net8.0\StoryGame.pdb
 C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali2\StoryGame\obj\Debug\net8.0\StoryGame.genruntimeconfig.cache
 C:\Users\esatc\OneDrive\Masaüstü\webapplikasjoner\ali2\StoryGame\obj\Debug\net8.0\ref\StoryGame.dll
+C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\bin\Debug\net8.0\Serilog.dll
+C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\bin\Debug\net8.0\package-lock.json
+C:\Users\Alias\Documents\AAAAAAAAAAAAAAAAAAAA\StoryGame\bin\Debug\net8.0\package.json

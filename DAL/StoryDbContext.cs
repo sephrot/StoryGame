@@ -15,6 +15,11 @@ public class StoryDbContext : DbContext
     public DbSet<Scene> Scenes { get; set; }
     public DbSet<Choice> Choices { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // A Scene has many Choices

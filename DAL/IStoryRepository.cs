@@ -4,10 +4,10 @@ namespace StoryGame.DAL;
 
 public interface IStoryRepository
 {
-    Task<IEnumerable<Story>> GetEverything();
-    Task<IEnumerable<Story>> GetAllStories();
+    Task<IEnumerable<Story>?> GetEverything();
+    Task<IEnumerable<Story>?> GetAllStories();
     Task<Story?> GetStoryById(int id);
-    Task Create(Story story);
-    Task Update(Story story);
+    Task<bool> Create(Story story);
+    Task<bool> Update(Story story);
     Task<bool> Delete(int id);
 }

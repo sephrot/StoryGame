@@ -1,7 +1,8 @@
 @model Choice
 
-<h1 class="display-4">Update Choice</h1>
-<form asp-action="Update" asp-controller="Choice" method="post">
+<div class="table-wrap">
+<h1 class="page-title">Update Choice</h1>
+<form asp-action="Update" asp-controller="Choice" method="post" class="form-card">
 <input type="hidden" asp-for="ChoiceId"/>
 <input type="hidden" asp-for="ThisSceneId" />
 <input type="hidden" asp-for="NextSceneId" />
@@ -13,11 +14,12 @@
     </div>
     @if (Model.NextScene != null) {
         <div class="form-group">
-        <p>@Model.NextScene.Text</p>
+        <p><strong>Next Scene:</strong> @Model.NextScene.Text</p>
         </div>
     }
-    
-    <p><button type="submit" class="btn btn-success mt-3">Save Changes</button></p>
-
-    <p><a class="btn btn-danger" asp-controller="Choice" asp-action="Delete" asp-route-id="@Model.ChoiceId">Delete Choice</a></p>
+    <div class="toolbar">
+    <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+    <a class="btn btn-outline-danger" asp-controller="Choice" asp-action="Delete" asp-route-id="@Model.ChoiceId">Delete Choice</a>
+    </div>
 </form>
+</div>

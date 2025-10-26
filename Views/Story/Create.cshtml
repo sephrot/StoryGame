@@ -1,6 +1,6 @@
 @model Story
 
-<section class="create-wrap">
+<section class="table-wrap">
   <h1 class="page-title">Create a story</h1>
 
   <form asp-action="Create" asp-controller="Story" method="post" class="form-card">
@@ -10,7 +10,9 @@
       <input asp-for="Text" class="form-control pixel-input" />
       <span asp-validation-for="Text" class="text-danger"></span>
     </div>
-
+    <div class="toolbar">
     <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="TableStory" class="btn btn-outline-danger">Cancel</a>
+    </div>
   </form>
 </section>

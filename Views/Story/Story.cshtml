@@ -1,6 +1,6 @@
 @model Scene
 
-<section class="play-wrap">
+<section class="table-wrap">
   <h1 class="page-title">@Model.Text</h1>
 
   <div id="scene" class="display-4" aria-hidden="true"></div>
@@ -13,7 +13,7 @@
   }
   else
   {
-    <div class="choice-row">
+    <div class="scene-list">
       @foreach (var choice in Model.ChoiceList)
       {
         <form asp-controller="Story" asp-action="Story" method="post" class="choice-form">
